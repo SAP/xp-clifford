@@ -5,9 +5,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	_ "github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	_ "github.com/SAP/xp-clifford/cli/export"
 )
 
 func login(_ context.Context) error {

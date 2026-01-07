@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/parsan"
+	"github.com/SAP/xp-clifford/parsan"
 	"github.com/charmbracelet/huh"
 )
 

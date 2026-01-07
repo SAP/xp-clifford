@@ -5,9 +5,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/widget"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
+	"github.com/SAP/xp-clifford/cli/widget"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {

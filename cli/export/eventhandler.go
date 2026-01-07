@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/yaml"
+	"github.com/SAP/xp-clifford/erratt"
+	"github.com/SAP/xp-clifford/yaml"
 
 	"github.com/charmbracelet/log"
 	"github.com/crossplane/crossplane-runtime/pkg/resource"

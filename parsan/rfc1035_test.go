@@ -4,7 +4,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/parsan"
+	"github.com/SAP/xp-clifford/parsan"
 )
 
 var _ = Describe("Rfc1035", func() {

@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/erratt"
 )
 
 type ConfigSchema struct {

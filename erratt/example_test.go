@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/erratt"
 )
 
 func ExampleNew() {
