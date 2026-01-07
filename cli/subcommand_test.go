@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
 )
 
 func ExampleRegisterSubCommand() {

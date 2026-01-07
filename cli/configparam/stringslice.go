@@ -3,8 +3,8 @@ package configparam
 import (
 	"context"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/widget"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/cli/widget"
+	"github.com/SAP/xp-clifford/erratt"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

@@ -4,11 +4,11 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	_ "github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/widget"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	_ "github.com/SAP/xp-clifford/cli/export"
+	"github.com/SAP/xp-clifford/cli/widget"
+	"github.com/SAP/xp-clifford/erratt"
 )
 
 var subcommand = &cli.BasicSubCommand{

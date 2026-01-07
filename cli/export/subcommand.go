@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/erratt"
 )
 
 func init() {

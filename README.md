@@ -40,8 +40,8 @@ The simplest CLI tool you can create using `xp-clifford` looks like this:
 package main
 
 import (
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	_ "github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	_ "github.com/SAP/xp-clifford/cli/export"
 )
 
 func main() {
@@ -55,15 +55,15 @@ Let's examine the `import` section.
 
 ```go
 import (
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	_ "github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	_ "github.com/SAP/xp-clifford/cli/export"
 )
 ```
 
 Two packages must be imported:
 
--   `github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli`
--   `github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export`
+-   `github.com/SAP/xp-clifford/cli`
+-   `github.com/SAP/xp-clifford/cli/export`
 
 The `cli/export` package is imported for side effects only.
 
@@ -170,8 +170,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(_ context.Context, events export.EventHandler) error {
@@ -238,8 +238,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
 
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 )
@@ -347,8 +347,8 @@ import (
 	"errors"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
 
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 )
@@ -475,9 +475,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/yaml"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
+	"github.com/SAP/xp-clifford/yaml"
 
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 )
@@ -608,9 +608,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
+	"github.com/SAP/xp-clifford/erratt"
 )
 
 func auth() erratt.Error {
@@ -717,9 +717,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/widget"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
+	"github.com/SAP/xp-clifford/cli/widget"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
@@ -806,9 +806,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/widget"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
+	"github.com/SAP/xp-clifford/cli/widget"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
@@ -901,8 +901,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(_ context.Context, events export.EventHandler) error {
@@ -988,9 +988,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(_ context.Context, events export.EventHandler) error {
@@ -1105,9 +1105,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
@@ -1240,9 +1240,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
@@ -1347,9 +1347,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
@@ -1455,9 +1455,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
@@ -1597,9 +1597,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	_ "github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	_ "github.com/SAP/xp-clifford/cli/export"
 )
 
 func login(_ context.Context) error {
@@ -1724,9 +1724,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	_ "github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	_ "github.com/SAP/xp-clifford/cli/export"
 )
 
 func login(_ context.Context) error {
@@ -1822,9 +1822,9 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/configparam"
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/cli/export"
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
 )
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {

@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/SAP/crossplane-provider-cloudfoundry/exporttool/erratt"
+	"github.com/SAP/xp-clifford/erratt"
 
 	"github.com/charmbracelet/glamour"
 	"sigs.k8s.io/yaml"
