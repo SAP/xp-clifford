@@ -1,5 +1,4 @@
-[REUSE status](https://api.reuse.software/info/github.com/SAP/xp-clifford)
-
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/xp-clifford)](https://api.reuse.software/info/github.com/SAP/xp-clifford)
 
 # About this project
 
