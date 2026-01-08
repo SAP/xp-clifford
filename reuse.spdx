@@ -1,0 +1,716 @@
+SPDXVersion: SPDX-2.1
+DataLicense: CC0-1.0
+SPDXID: SPDXRef-DOCUMENT
+DocumentName: xp-clifford
+DocumentNamespace: http://spdx.org/spdxdocs/spdx-v2.1-35f175e8-b41c-4bd9-96bb-9f8d332a3f30
+Creator: Person: Anonymous ()
+Creator: Organization: Anonymous ()
+Creator: Tool: reuse-5.0.2
+Created: 2026-01-08T09:00:44Z
+CreatorComment: <text>This document was created automatically using available reuse information consistent with REUSE.</text>
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-b2363cc0a2a11045d11f01bf76de0188
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-75edbee4abd4edba24ef3bac4773dd77
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-e6b60f37efc9c91b3ae5d6729d2e1e7d
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-fb667a8c7bbb7be10c64f9ca6f24f64f
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-58afefa5ba139737953e3bfe6c58be0d
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-2b0d3993a821c4d0bcbbc90509a34338
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-d88c00dd39d1d4d36d238e4fb8e51ba7
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-bdad3518624dd3b30d7aea542d09b088
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-c73a1105f4a8eb5ea40b1ca23123f704
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-f22483bc9bc3dc7ad9b5e26177f5eab7
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-723c0dd3286fb6ac246e64919e0f7a5d
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ae685e85e32cb16f14187f9a241a5525
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3e1d177dbaac25292f7e624e9779dc7c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-8df07d65f3136e2ba1be45e377264912
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3b2dff1c7ac9e86cd61fce6321cf0c17
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-e18da1031ed1bdb67f1f4848feafdf1c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-c2aebc671f56e18e653a5dac9f61e934
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-546373063e38856b18626bb6f68b7df4
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ced349d80b67920c281edd8628b9d5f3
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-2ee6e9f4846a9a390ba38255682166d9
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3e0e0b5ef3d07079ba3786b600967b8c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-75039ad472e3148179dbb1e258c1017d
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-080d3b27ccddf59b9ed44df499a9f4ec
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-de29ef6cca71f0e83b5926394f894071
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-c9f93082e2fa97165025ea753fcbe009
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-39dfc257712756b7ca4c6e5bc4b73a21
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-636fcda138ec245d5a4f456763553a8f
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-eb35076a395914fda286c253823c0d7d
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-8c8c2803d998d3a9567b4d4afe17b171
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-498a7af0665f26044a56a086b1797939
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ee027e29d8886a778f3f7f579eed3c99
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-5f2fc67162eb860839e2be0f42749032
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-c0f20f9eb3bbc013339f6ebdb7477e5c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-a63333a9a68769ce65d8579bc4e6d64e
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-2697301491fd09ca1db381368479ca89
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3cb4f0750c8ffa08fe14f34c592ed163
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-43fb72a834b375b8e2fe2c8eb856c4b6
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-8b7ca31b74bb87df171e64662d7495f9
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-5861f2ef7ec52fb493f6d0cf2cc50378
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-c2ffc22116d1f53bf101255c2328ba4a
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-afc745007354486c7ced4df505d8bd53
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-60a446e449105a6f8f1a15859e8aede8
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-5c524b0f708c6b680bc6a1b0f917c164
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-caac4a8fd12ca4ff18ed1f7deb7a1dc0
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-929ac11c9e02ce549e73581f905fbfed
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-561821adc0863145d6cce06b88a1d0a7
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-41bd648715a2b5eebbb499152462eebe
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-6bdc72a358c1354bf4667da8c30c6922
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-dee729776176cf6727154fab3929369a
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-db9986480519fddb88c86b46c5eb47c4
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4a582c79e87b849c5c3c1dbd9b949cdf
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-28cf97f2037f685ad5d0228922d194c6
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-0e4c4c9c302050c8c79d2070ffa725b2
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-cc79a1cda06dc10ef8450d7b30f08b22
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-284601513d97df47e285811bacf32ccb
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4f1570a9bbedb8cf289533dd554f1bac
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-deb76cdeeece925696903188074bdba7
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-780133820b9034b517f69d6fa002e955
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-dfc6dfc3769818dc9a5505ba849bf200
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-e56b5881f3fafeaf8540ad095e8f6307
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ff8cf7bf91734029fbd18a399c72ea81
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3b226604fa28400dcdca2f959999d203
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-6863b1956800fee62ef729779ace2941
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ca37483040861ab3f7cdb67c5e5117fb
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-f07d8431075f9cc7251bcad8d484673c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-310c1a4581fc63b5c5b432984d3d26e0
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-7a95d98baeeeafafa918c36954bf4b09
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-cc1dd51b03320781b7650246f2870f6c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-60bfbe6ccbf1c4fe8510694d84ab9d53
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-07905ada4187770a121e3ea320244ea1
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-be97357d38757c525d98f96f3f33f260
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-69d10f7edaca913858fb85023830c6ea
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-e3f395297093c9cae3967169ca472a68
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-008d4f810b017f0a19b4d1a30f335ebf
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-f06502c228039ab4cb4338687f1909a0
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-b299b7a30a73d330ce797fc8eff6522f
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-12531a2cbf24fe3ca44fe36c689b7de6
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4d8dfb5a19c736dee08dbce99c781e33
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-a410b2d1c3f6886c47334f084152b630
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-da856beecec259071604d79dd63c49f5
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-37c32c7f68239ae4bbe67b0f390db943
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-09a3f0eba9ad9610a892251dd90a263d
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-5e45c1ba93fc7f7e91cca966ddc79fa0
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-f42da7d2c5de03e71e98e5a575f72d75
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-1cc18622c64421023feaa4e65eb0a817
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-89f6c1009c80cd4ac38ab3a224e05bdd
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-ea08e88067d0b147e7193b6c895a0355
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-d4415b7ce6577d56dc38a3f70c8fa308
+
+FileName: ./.github/workflows/reuse-scan.yaml
+SPDXID: SPDXRef-b2363cc0a2a11045d11f01bf76de0188
+FileChecksum: SHA1: 8b3fe856984d74c51f7f68113164a06a032b19fd
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./.gitignore
+SPDXID: SPDXRef-75edbee4abd4edba24ef3bac4773dd77
+FileChecksum: SHA1: dccf5dd7d9c2c0ef2201c9055ca27504f052e849
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./CONTRIBUTING.md
+SPDXID: SPDXRef-e6b60f37efc9c91b3ae5d6729d2e1e7d
+FileChecksum: SHA1: 289713a6bce01f9a2506080234232cae1a50b4bf
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./README.md
+SPDXID: SPDXRef-fb667a8c7bbb7be10c64f9ca6f24f64f
+FileChecksum: SHA1: b3f9f62c4a84efa6b02f41132ec8375eb3d9fe68
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors
+Copyright 2026 SAP SE or an SAP affiliate company and xp-clifford contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](<https://api.reuse.software/info/github.com/SAP/xp-clifford>).</text>
+
+FileName: ./cli/cli.go
+SPDXID: SPDXRef-58afefa5ba139737953e3bfe6c58be0d
+FileChecksum: SHA1: b4da2825ef47b349f95f115d9a2dc1e074367d17
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/cli_test.go
+SPDXID: SPDXRef-2b0d3993a821c4d0bcbbc90509a34338
+FileChecksum: SHA1: 0fc4340b9c6847b430787059119fe6711de62ba9
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/config.go
+SPDXID: SPDXRef-d88c00dd39d1d4d36d238e4fb8e51ba7
+FileChecksum: SHA1: 87748e9e7c19fbc279541f6a9fb7b0ff852a336e
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configfile.go
+SPDXID: SPDXRef-bdad3518624dd3b30d7aea542d09b088
+FileChecksum: SHA1: 0ace91a46aba0f0a6ce7b7c5473c2194b429401a
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configparam/bool.go
+SPDXID: SPDXRef-c73a1105f4a8eb5ea40b1ca23123f704
+FileChecksum: SHA1: e3cab8d5f1ebc0095abcb7024ae1103bde83c82d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configparam/configparam.go
+SPDXID: SPDXRef-f22483bc9bc3dc7ad9b5e26177f5eab7
+FileChecksum: SHA1: 2077856171af2e975d250a901d4778c429fa791d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configparam/configparam_test.go
+SPDXID: SPDXRef-723c0dd3286fb6ac246e64919e0f7a5d
+FileChecksum: SHA1: e29520a546e35f47636e79e51d534896f9d1455b
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configparam/doc.go
+SPDXID: SPDXRef-ae685e85e32cb16f14187f9a241a5525
+FileChecksum: SHA1: cffa3763821a447cb24aa07b6ada98ed53be71d3
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configparam/string.go
+SPDXID: SPDXRef-3e1d177dbaac25292f7e624e9779dc7c
+FileChecksum: SHA1: b1ea28276ccab69bcfcdb1e7d2d1ac52dcd4052a
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/configparam/stringslice.go
+SPDXID: SPDXRef-8df07d65f3136e2ba1be45e377264912
+FileChecksum: SHA1: 2b4ebd8b1901a3da4b59aea698b004032d5b60f9
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/export/doc.go
+SPDXID: SPDXRef-3b2dff1c7ac9e86cd61fce6321cf0c17
+FileChecksum: SHA1: 374c9f2ce7cd28724fb692601f0d01608403dc7f
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/export/eventhandler.go
+SPDXID: SPDXRef-e18da1031ed1bdb67f1f4848feafdf1c
+FileChecksum: SHA1: 57c61543589b192e956f5c9cd4dd9356b1289df9
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/export/subcommand.go
+SPDXID: SPDXRef-c2aebc671f56e18e653a5dac9f61e934
+FileChecksum: SHA1: e5b0b83e1dbd222bbb249f40d9637720d9deaf1e
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/interrupt.go
+SPDXID: SPDXRef-546373063e38856b18626bb6f68b7df4
+FileChecksum: SHA1: 6f01f754e1f437b072d896063715d4bc4bfbb1d3
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/log.go
+SPDXID: SPDXRef-ced349d80b67920c281edd8628b9d5f3
+FileChecksum: SHA1: aa96ec30c45d2a06fbb2e535ca7e1a190550499a
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/subcommand.go
+SPDXID: SPDXRef-2ee6e9f4846a9a390ba38255682166d9
+FileChecksum: SHA1: 7113675769980882b53dbcf45f4766540aa46c31
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/subcommand_test.go
+SPDXID: SPDXRef-3e0e0b5ef3d07079ba3786b600967b8c
+FileChecksum: SHA1: 6918cda24f661f13e392870b96cb8512cfb62eed
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/viper.go
+SPDXID: SPDXRef-75039ad472e3148179dbb1e258c1017d
+FileChecksum: SHA1: c49fa43b03fa471d5b861867ee88d161d41a1c4d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/widget/doc.go
+SPDXID: SPDXRef-080d3b27ccddf59b9ed44df499a9f4ec
+FileChecksum: SHA1: ccb5a9712bd47cad1c561cb04bcb5296b33005b0
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/widget/multiinput.go
+SPDXID: SPDXRef-de29ef6cca71f0e83b5926394f894071
+FileChecksum: SHA1: e394f93bf76fbe70b74c08271aed774a1b5f6846
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./cli/widget/textinput.go
+SPDXID: SPDXRef-c9f93082e2fa97165025ea753fcbe009
+FileChecksum: SHA1: 38b46fb532931ea4aadaafeb57d377204c11f848
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./erratt/doc.go
+SPDXID: SPDXRef-39dfc257712756b7ca4c6e5bc4b73a21
+FileChecksum: SHA1: 74b24ffd3db6408bb7ac20a261956da17bfebcab
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./erratt/erratt.go
+SPDXID: SPDXRef-636fcda138ec245d5a4f456763553a8f
+FileChecksum: SHA1: 9adba00a46361503f56bb0f93a399096002d7cb2
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./erratt/erratt_suite_test.go
+SPDXID: SPDXRef-eb35076a395914fda286c253823c0d7d
+FileChecksum: SHA1: 56b6c3e52bee6cf1134adb7262da2f6e1c8a52a5
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./erratt/erratt_test.go
+SPDXID: SPDXRef-8c8c2803d998d3a9567b4d4afe17b171
+FileChecksum: SHA1: 2bb6f48f114ba86fb846d027e9b5564982f58a52
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./erratt/example_test.go
+SPDXID: SPDXRef-498a7af0665f26044a56a086b1797939
+FileChecksum: SHA1: 60b11df3a4ab91051aee47558e13385ad6650ae2
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/basic/doc.go
+SPDXID: SPDXRef-ee027e29d8886a778f3f7f579eed3c99
+FileChecksum: SHA1: f51f0eb2059b62ed190b81bbc9d98cab42000879
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/basic/main.go
+SPDXID: SPDXRef-5f2fc67162eb860839e2be0f42749032
+FileChecksum: SHA1: 5b38463365a872a0bb80899220e8ab94275c2597
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/boolparam/main.go
+SPDXID: SPDXRef-c0f20f9eb3bbc013339f6ebdb7477e5c
+FileChecksum: SHA1: 386901957cc7deea30faf96d6e425b670f0e8292
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/configfile/config
+SPDXID: SPDXRef-a63333a9a68769ce65d8579bc4e6d64e
+FileChecksum: SHA1: 8855f4fdeca367654ff30a141437f5fa78a713f4
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/configfile/main.go
+SPDXID: SPDXRef-2697301491fd09ca1db381368479ca89
+FileChecksum: SHA1: fa8b48356fdafa9a348ca890d3ed80b340ed7d48
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/configparams/config.yaml
+SPDXID: SPDXRef-3cb4f0750c8ffa08fe14f34c592ed163
+FileChecksum: SHA1: 2549a1ef31cf64b888c1f2b8a5287b3275daa0d2
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/configparams/doc.go
+SPDXID: SPDXRef-43fb72a834b375b8e2fe2c8eb856c4b6
+FileChecksum: SHA1: 3b315b6a853c4b696f8e86d9d2cf32cb1e7c68d6
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/configparams/main.go
+SPDXID: SPDXRef-8b7ca31b74bb87df171e64662d7495f9
+FileChecksum: SHA1: 5fda8a1190f4c978bbe62ddb1da92acb19059873
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/erratt/main.go
+SPDXID: SPDXRef-5861f2ef7ec52fb493f6d0cf2cc50378
+FileChecksum: SHA1: 8f959d6e27bb64dd02544ae42acb5009287e7b27
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/export/doc.go
+SPDXID: SPDXRef-c2ffc22116d1f53bf101255c2328ba4a
+FileChecksum: SHA1: c2deacf7120d831e0d5a50cea63de884631ae203
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/export/main.go
+SPDXID: SPDXRef-afc745007354486c7ced4df505d8bd53
+FileChecksum: SHA1: e66e7f32e71b5c106f1f83202fd88ba194619597
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportcomment/main.go
+SPDXID: SPDXRef-60a446e449105a6f8f1a15859e8aede8
+FileChecksum: SHA1: ad97ab5a8285e69e37891acbc0412ea117174d11
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportresource/doc.go
+SPDXID: SPDXRef-5c524b0f708c6b680bc6a1b0f917c164
+FileChecksum: SHA1: e1da4510bb962b6f6b60f68a1b4dbcff18d45904
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportresource/main.go
+SPDXID: SPDXRef-caac4a8fd12ca4ff18ed1f7deb7a1dc0
+FileChecksum: SHA1: d58e721f8c9714fbc9058e4160a1da16c8577938
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportresource/output.yaml
+SPDXID: SPDXRef-929ac11c9e02ce549e73581f905fbfed
+FileChecksum: SHA1: 11aaed6802909d9730ded0d98dfbca17ab95fa72
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportresource/output.yaoutput.yals
+SPDXID: SPDXRef-561821adc0863145d6cce06b88a1d0a7
+FileChecksum: SHA1: 11aaed6802909d9730ded0d98dfbca17ab95fa72
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportsingle/main.go
+SPDXID: SPDXRef-41bd648715a2b5eebbb499152462eebe
+FileChecksum: SHA1: ba46791cb61d6e58adaa0cbc3197e7853dbc10eb
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/exportwarn/main.go
+SPDXID: SPDXRef-6bdc72a358c1354bf4667da8c30c6922
+FileChecksum: SHA1: 18fad0e298a962eb558c9a85d4cf9c1e82518ee9
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/loginsubcommand/main.go
+SPDXID: SPDXRef-dee729776176cf6727154fab3929369a
+FileChecksum: SHA1: eb45b45998684a32fad602e134b9b6d841d2411e
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/loginsubcommandparam/main.go
+SPDXID: SPDXRef-db9986480519fddb88c86b46c5eb47c4
+FileChecksum: SHA1: d25029fb971f5944d3080a1c7ce7e165574da8d7
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/multiinput/example.gif
+SPDXID: SPDXRef-4a582c79e87b849c5c3c1dbd9b949cdf
+FileChecksum: SHA1: f5019dd7bbeab99d3da6e1dca8229587a1397ec8
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/multiinput/main.go
+SPDXID: SPDXRef-28cf97f2037f685ad5d0228922d194c6
+FileChecksum: SHA1: e7bef8756d4dfd3de4000c60e3e094c80ef95b85
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/multiinput/testrun.tape
+SPDXID: SPDXRef-0e4c4c9c302050c8c79d2070ffa725b2
+FileChecksum: SHA1: c915cff9fa4c48993c2059314b328b6e17f27f5c
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/parsan/main.go
+SPDXID: SPDXRef-cc79a1cda06dc10ef8450d7b30f08b22
+FileChecksum: SHA1: ebcc9d4c9e349090c53bc911472d71169908340d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringparam/example.gif
+SPDXID: SPDXRef-284601513d97df47e285811bacf32ccb
+FileChecksum: SHA1: 66fb40e8cce17cb293caad6c302a7efe4dddb7f0
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringparam/main.go
+SPDXID: SPDXRef-4f1570a9bbedb8cf289533dd554f1bac
+FileChecksum: SHA1: e45f405ef28f481b23db98631deddf2d37fac7dd
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringparam/testrun.tape
+SPDXID: SPDXRef-deb76cdeeece925696903188074bdba7
+FileChecksum: SHA1: 12bd339f34094623a491246f5b4f4af23e73dbf9
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslice/main.go
+SPDXID: SPDXRef-780133820b9034b517f69d6fa002e955
+FileChecksum: SHA1: 4ba4f302dc0777f0792611946af320abd5ed5d80
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicedynamic/example1.gif
+SPDXID: SPDXRef-dfc6dfc3769818dc9a5505ba849bf200
+FileChecksum: SHA1: e82c76cbc5ab6d6f3d7aa171f4188efc60a04023
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicedynamic/example2.gif
+SPDXID: SPDXRef-e56b5881f3fafeaf8540ad095e8f6307
+FileChecksum: SHA1: 0600d8969b4f74f5da8b760370d496719059df2f
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicedynamic/main.go
+SPDXID: SPDXRef-ff8cf7bf91734029fbd18a399c72ea81
+FileChecksum: SHA1: aa2f8ac6e153f703699e9e2f0def494caf7a0fe4
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicedynamic/testrun1.tape
+SPDXID: SPDXRef-3b226604fa28400dcdca2f959999d203
+FileChecksum: SHA1: 846225b0cc3e6e7d63d7887bef84d9a7b28b609d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicedynamic/testrun2.tape
+SPDXID: SPDXRef-6863b1956800fee62ef729779ace2941
+FileChecksum: SHA1: 71a39fe884d8d2ce55030d4c7c379a36edd6095f
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicestatic/example.gif
+SPDXID: SPDXRef-ca37483040861ab3f7cdb67c5e5117fb
+FileChecksum: SHA1: 431501ea0040eb3d98f910a10448a5e81bb00063
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicestatic/main.go
+SPDXID: SPDXRef-f07d8431075f9cc7251bcad8d484673c
+FileChecksum: SHA1: e8424039db195d020dc72dccd65e3326b00425c7
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/stringslicestatic/testrun.tape
+SPDXID: SPDXRef-310c1a4581fc63b5c5b432984d3d26e0
+FileChecksum: SHA1: c915cff9fa4c48993c2059314b328b6e17f27f5c
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/subcommand/doc.go
+SPDXID: SPDXRef-7a95d98baeeeafafa918c36954bf4b09
+FileChecksum: SHA1: 26f3059fa9c742462b9baaf78891ff7b4e45d4da
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/subcommand/main.go
+SPDXID: SPDXRef-cc1dd51b03320781b7650246f2870f6c
+FileChecksum: SHA1: 367d7dc1da3f0e6f6a487a44b0b098948456879a
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/textinput/example.gif
+SPDXID: SPDXRef-60bfbe6ccbf1c4fe8510694d84ab9d53
+FileChecksum: SHA1: 558ae4d1cc6b2db8af7bc6319de9586ba47442fc
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/textinput/main.go
+SPDXID: SPDXRef-07905ada4187770a121e3ea320244ea1
+FileChecksum: SHA1: 0b0a1d8b4b313857ff603b7e2b56a60f9b3c370e
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/textinput/testrun.tape
+SPDXID: SPDXRef-be97357d38757c525d98f96f3f33f260
+FileChecksum: SHA1: fafcb31c807b23153e9d584f5f08d189819ceb4a
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./examples/verbose/main.go
+SPDXID: SPDXRef-69d10f7edaca913858fb85023830c6ea
+FileChecksum: SHA1: 7143dd7f3b421c7416e5c119fc2db8e542be64f2
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./go.mod
+SPDXID: SPDXRef-e3f395297093c9cae3967169ca472a68
+FileChecksum: SHA1: f7c21724abb578ef1b7721f4b934f9fa69832c0f
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./go.sum
+SPDXID: SPDXRef-008d4f810b017f0a19b4d1a30f335ebf
+FileChecksum: SHA1: 21c2c0c9d58efc363228a123a6a845750d80602d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./output.yaml
+SPDXID: SPDXRef-f06502c228039ab4cb4338687f1909a0
+FileChecksum: SHA1: fe44baadd0fba6db0016a8e0331250172c230b37
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/abnf.go
+SPDXID: SPDXRef-b299b7a30a73d330ce797fc8eff6522f
+FileChecksum: SHA1: 6600affa1cef091bd0315a644a8f58eb0744160f
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/abnf_test.go
+SPDXID: SPDXRef-12531a2cbf24fe3ca44fe36c689b7de6
+FileChecksum: SHA1: e7fb9b3e7be3d482838dd2f82efdde2f02d49726
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/basic.go
+SPDXID: SPDXRef-4d8dfb5a19c736dee08dbce99c781e33
+FileChecksum: SHA1: 414c884ab0a3557a5bb2d0187354d0ec7a824d42
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/basic_test.go
+SPDXID: SPDXRef-a410b2d1c3f6886c47334f084152b630
+FileChecksum: SHA1: bd1b8f982f0e465f6cbbf24e22d94f9e740e1056
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/doc.go
+SPDXID: SPDXRef-da856beecec259071604d79dd63c49f5
+FileChecksum: SHA1: d6be0c640d20dccf18dff6b2bcba846547890e8c
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/examples_test.go
+SPDXID: SPDXRef-37c32c7f68239ae4bbe67b0f390db943
+FileChecksum: SHA1: f6a261074d1eba30153bd6807b81ded0734d755d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/parsan_suite_test.go
+SPDXID: SPDXRef-09a3f0eba9ad9610a892251dd90a263d
+FileChecksum: SHA1: 0dc2547f1dde0bfb1e6f49bf10f80c9cfef5933f
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/rfc1035.go
+SPDXID: SPDXRef-5e45c1ba93fc7f7e91cca966ddc79fa0
+FileChecksum: SHA1: a434cc0f981b91f9654c73b627cbd46a326b42c5
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/rfc1035_test.go
+SPDXID: SPDXRef-f42da7d2c5de03e71e98e5a575f72d75
+FileChecksum: SHA1: bfa3ceaf719c107915be1ea9567eaf9dd2fab66b
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./parsan/suggestfn.go
+SPDXID: SPDXRef-1cc18622c64421023feaa4e65eb0a817
+FileChecksum: SHA1: 8157ab59b5ae9da5305e5bee4eb36b1d6b2faaf3
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./yaml/comment.go
+SPDXID: SPDXRef-89f6c1009c80cd4ac38ab3a224e05bdd
+FileChecksum: SHA1: f0dcc3c197c713373bb9d203528f22c7b5268849
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./yaml/doc.go
+SPDXID: SPDXRef-ea08e88067d0b147e7193b6c895a0355
+FileChecksum: SHA1: eeba30407f52dd81138cbef978dc933614814c3d
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
+FileName: ./yaml/yaml.go
+SPDXID: SPDXRef-d4415b7ce6577d56dc38a3f70c8fa308
+FileChecksum: SHA1: 9f74ad91235fec35eea5a51a4a524b620a86e80b
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: Apache-2.0
+FileCopyrightText: <text>2026 SAP SE or an SAP affiliate company and xp-clifford contributors</text>
+
