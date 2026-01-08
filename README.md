@@ -6,6 +6,17 @@
 
 The resource definitions can then be imported into Crossplane using the [standard import procedure](https://docs.crossplane.io/v2.1/guides/import-existing-resources/). It is recommended to check the generated definitions for comments, before doing the import. See also [Exporting commented out resources](#commented-export).
 
+# Requirements
+
+`xp-clifford` is a Go module and requires only a working Go development environment.
+
+# Setup
+
+To install the `xp-clifford` Go module, run the following command:
+
+```sh
+go get github.com/SAP/xp-clifford
+```
 
 # Support, Feedback, Contributing
 
