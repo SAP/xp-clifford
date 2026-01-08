@@ -1,16 +1,18 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/xp-clifford)](https://api.reuse.software/info/github.com/SAP/xp-clifford)
 
-# About this project
+# xp-clifford
+
+## About this project
 
 `xp-clifford` (Crossplane CLI Framework for Resource Data Extraction) is a Go module that facilitates the development of CLI tools for exporting definitions of external resources in the format of specific Crossplane provider managed resource definitions.
 
 The resource definitions can then be imported into Crossplane using the [standard import procedure](https://docs.crossplane.io/v2.1/guides/import-existing-resources/). It is recommended to check the generated definitions for comments, before doing the import. See also [Exporting commented out resources](#commented-export).
 
-# Requirements
+## Requirements
 
 `xp-clifford` is a Go module and requires only a working Go development environment.
 
-# Setup
+## Setup
 
 To install the `xp-clifford` Go module, run the following command:
 
@@ -18,32 +20,32 @@ To install the `xp-clifford` Go module, run the following command:
 go get github.com/SAP/xp-clifford
 ```
 
-# Support, Feedback, Contributing
+## Support, Feedback, Contributing
 
 This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](<https://github.com/SAP/xp-clifford/issues>). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
 
-# Security / Disclosure
+## Security / Disclosure
 
 If you find any bug that may be a security problem, please follow our instructions at [in our security policy](https://github.com/SAP/xp-clifford/security/policy) on how to report it. Please do not create GitHub issues for security-related doubts or problems.
 
 
-# Code of Conduct
+## Code of Conduct
 
 We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone. By participating in this project, you agree to abide by its [Code of Conduct](<https://github.com/SAP/.github/blob/main/CODE_OF_CONDUCT.md>) at all times.
 
 
-# Licensing
+## Licensing
 
 Copyright 2026 SAP SE or an SAP affiliate company and xp-clifford contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](<https://api.reuse.software/info/github.com/SAP/xp-clifford>).
 
 
-# Examples
+## Examples
 
 These examples demonstrate the basic features of `xp-clifford` and build progressively on one another.
 
 
-## The simplest CLI tool
+### The simplest CLI tool
 
 The simplest CLI tool you can create using `xp-clifford` looks like this:
 
@@ -131,10 +133,10 @@ go run ./examples/basic/main.go export
     ERRO export subcommand is not set
 
 
-## Exporting
+### Exporting
 
 
-### Basic export subcommand
+#### Basic export subcommand
 
 The `export` subcommand is mandatory, but you are responsible for implementing the code that executes when it is invoked.
 
@@ -208,7 +210,7 @@ go run ./examples/export/main.go export
     INFO export command invoked
 
 
-### Exporting a resource
+#### Exporting a resource
 
 In the previous example, we created a proper `export` subcommand, but didn't actually export any resources.
 
@@ -313,7 +315,7 @@ cat output.yaml
     ...
 
 
-### Displaying warnings
+#### Displaying warnings
 
 During the processing and conversion of external resources, the export logic may encounter unexpected situations such as unstable network connections, authentication issues, or unknown resource configurations.
 
@@ -426,7 +428,7 @@ cat output.yaml
 
 <a id="commented-export"></a>
 
-### Exporting commented out resources
+#### Exporting commented out resources
 
 During the export process, problems may prevent generation of valid managed resource definitions, or the definitions produced may be unsafe to apply.
 
@@ -544,7 +546,7 @@ This works equally well when redirecting output to a file using the `-o` flag.
 
 <a id="erratt-example"></a>
 
-## Errors with attributes
+### Errors with attributes
 
 The `erratt` package implements a new `error` type designed for efficient use with the `Warn` method of `EventHandler`.
 
@@ -671,14 +673,14 @@ The error message appears on the console with all attributes displayed.
 The `EventHandler.Warn` method handles `erratt.Error` values in the same manner.
 
 
-## Widgets
+### Widgets
 
 `xp-clifford` provides several CLI widgets to facilitate the interaction with the user.
 
 Note that for the widgets to run, the CLI tool must be executed in an interactive terminal. This is not always the case by default, when running or debugging an application within an IDE (like GoLand) using a Run Configuration. In such cases, make sure to configure the Run Configuration appropriately. Specifically for [GoLand](https://www.jetbrains.com/help/go/run-debug-configuration.html) it can be done by selecting `Emulate terminal in output console`.
 
 
-### TextInput widget
+#### TextInput widget
 
 The TextInput widget prompts the user for a single line of text. Create a TextInput widget using the `TextInput` function from the `widget` package.
 
@@ -768,7 +770,7 @@ See the example in action:
 ![img](examples/textinput/example.gif "TextInput example")
 
 
-### MultiInput widget
+#### MultiInput widget
 
 The MultiInput widget creates a multi-selection interface that allows users to select multiple items from a predefined list of options:
 
@@ -857,7 +859,7 @@ Running this example produces the following output:
 ![img](examples/multiinput/example.gif "MultiInput example")
 
 
-## Configuration parameters
+### Configuration parameters
 
 CLI tools built using `xp-clifford` can be configured through several methods:
 
@@ -876,7 +878,7 @@ Currently, the following configuration parameter types are supported:
 All configuration parameters managed by `xp-clifford` implement the `configparam.ConfigParam` interface.
 
 
-### Global configuration parameters
+#### Global configuration parameters
 
 Any CLI tool built using `xp-clifford` includes the following global flags:
 
@@ -889,7 +891,7 @@ The verbose logging is explained in [Verbose logging](#verbose). The configurati
 
 <a id="verbose"></a>
 
-#### Verbose logging
+##### Verbose logging
 
 Enable verbose logging with the `-v` or `--verbose` flag. When enabled, structured log messages at the *Debug* level are also printed to the console.
 
@@ -945,7 +947,7 @@ go run ./examples/verbose/main.go export -v
     DEBU export command invoked
 
 
-### Configuration parameters of the export subcommand
+#### Configuration parameters of the export subcommand
 
 The `export` subcommand includes the following default configuration parameters:
 
@@ -959,7 +961,7 @@ func AddConfigParams(param ...configparam.ConfigParam)
 ```
 
 
-### Bool configuration parameter
+#### Bool configuration parameter
 
 Create a new *bool* configuration parameter using the `configparam.Bool` function:
 
@@ -1079,7 +1081,7 @@ CLIFFORD_TEST=1 go run ./examples/boolparam/main.go export
     INFO export command invoked test-value=true
 
 
-### String configuration parameter
+#### String configuration parameter
 
 Create a new *string* configuration parameter using the `configparam.String` function:
 
@@ -1208,7 +1210,7 @@ When no value is provided, the `TextInput` widget prompts for it interactively:
 ![img](examples/stringparam/example.gif "Asking a string config parameter value")
 
 
-### String slice configuration parameter
+#### String slice configuration parameter
 
 A string slice configuration parameter configures values of type `[]string`.
 
@@ -1232,7 +1234,7 @@ Use the `Value()` method to retrieve the parameter value. The `IsSet()` method r
 The `ValueOrAsk` method returns the value if set. Otherwise, it prompts for the value interactively using the `MultiInput` widget. Interactive prompting requires setting possible values with `WithPossibleValues` or `WithPossibleValuesFn`.
 
 
-#### Without possible values
+##### Without possible values
 
 The following example configures a *StringSlice* parameter:
 
@@ -1336,7 +1338,7 @@ PROTOCOLS="HTTP HTTPS FTP" go run ./examples/stringslice/main.go export
     INFO export command invoked protocols="[HTTP HTTPS FTP]" num-of-protos=3 is-set=true
 
 
-#### With static possible values
+##### With static possible values
 
 To enable interactive prompting with *StringSlice* configuration parameters, add static selection options using the `WithPossibleValues` method.
 
@@ -1423,7 +1425,7 @@ When you omit the parameter values, the CLI tool prompts for them interactively:
 ![img](examples/stringslicestatic/example.gif "Prompting for StringSlice value")
 
 
-#### With dynamic possible values
+##### With dynamic possible values
 
 Sometimes the set of possible *StringSlice* parameter values cannot be defined at build time. The value set may depend on a previous interactive selection or the result of an API request.
 
@@ -1560,7 +1562,7 @@ If *secure* is set:
 ![img](examples/stringslicedynamic/example2.gif "Prompting for StringSlice dynamically - secure is on")
 
 
-### Subcommands
+#### Subcommands
 
 CLI tools created with `xp-clifford` include the mandatory `export` subcommand. You can also define additional subcommands by creating a value that implements the `cli.SubCommand` interface.
 
@@ -1691,7 +1693,7 @@ go run ./examples/loginsubcommand/main.go login
     INFO login invoked
 
 
-#### Subcommand with configuration parameters
+##### Subcommand with configuration parameters
 
 Custom subcommands can be extended with configuration parameters using the `GetConfigParams()` method of the `cli.SubCommand` interface, or by setting the `ConfigParams` field of a `BasicSubCommand` value.
 
@@ -1809,7 +1811,7 @@ go run ./examples/loginsubcommandparam/main.go login -t
 
 <a id="config-file"></a>
 
-### Configuration file
+#### Configuration file
 
 In addition to CLI flags and environment variables, a CLI tool built with `xp-clifford` can read configuration from a YAML file.
 
@@ -1921,7 +1923,7 @@ PROTOCOLS="FTP" go run ./examples/configfile/main.go export --config ./examples/
     INFO export command invoked protocols=[SSH] username=config-user boolparam=false
 
 
-## Parsing and sanitizing
+### Parsing and sanitizing
 
 When creating Crossplane managed resource definitions, we frequently transform objects describing external resources into a different schema. Usually the values are preserved, but the data structure differs.
 
@@ -1938,12 +1940,12 @@ func ParseAndSanitize(input string, rule Rule) []string
 The `ParseAndSanitize` function takes an *input* string and a *rule*, then transforms the *input* to conform to the *rule*. Since multiple valid sanitized solutions may exist, the function returns all of them.
 
 
-### Sanitizer rules
+#### Sanitizer rules
 
 The following rules are available for sanitization.
 
 
-#### RFC1035Subdomain
+##### RFC1035Subdomain
 
 The `RFC1035Subdomain` rule conforms to:
 
@@ -1973,7 +1975,7 @@ Examples:
 | `admin@example.com`    | `admin-at-example.com` |
 
 
-#### RFC1035LowerSubdomain
+##### RFC1035LowerSubdomain
 
 The `RFC1035LowerSubdomain` rule is a variation of `RFC1035Subdomain` that requires lowercase letters only. Uppercase letters are converted to lowercase:
 
@@ -1985,7 +1987,7 @@ The `RFC1035LowerSubdomain` rule is a variation of `RFC1035Subdomain` that requi
 | `admin@example.com`    | `admin-at-example.com` |
 
 
-#### RFC1035SubdomainRelaxed
+##### RFC1035SubdomainRelaxed
 
 The `RFC1035SubdomainRelaxed` rule is a variation of `RFC1035Subdomain` that allows *labels* to start with digits:
 
@@ -1997,7 +1999,7 @@ The `RFC1035SubdomainRelaxed` rule is a variation of `RFC1035Subdomain` that all
 | `admin@example.com`    | `admin-at-example.com` |
 
 
-#### RFC1035LowerSubdomainRelaxed
+##### RFC1035LowerSubdomainRelaxed
 
 The `RFC1035LowerSubdomainRelaxed` rule combines `RFC1035LowerSubdomain` and `RFC1035SubdomainRelaxed`. Uppercase characters are converted to lowercase, and *labels* may start with digits:
 
@@ -2008,6 +2010,6 @@ The `RFC1035LowerSubdomainRelaxed` rule combines `RFC1035LowerSubdomain` and `RF
 | `99Luftballons`        | `99luftballons`        |
 | `admin@example.com`    | `admin-at-example.com` |
 
-## Footnotes
+### Footnotes
 
 <sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> [Object Names and IDs - kubernetes.io](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/)
