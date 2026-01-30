@@ -37,6 +37,8 @@ type Container interface {
 	// AllByNames returns an iterator over all name-indexed items
 	// as key-value pairs (name -> slice of items).
 	AllByNames() iter.Seq2[string, []ItemWithName]
+
+	IsEmpty() bool
 }
 
 // container is the concrete implementation of Container.
@@ -107,4 +109,10 @@ func (c *container) AllByNames() iter.Seq2[string, []ItemWithName] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	return maps.All(c.nameIndex)
+}
+
+func (c *container) IsEmpty() bool {
+	c.lock.RLock()
+	defer c.lock.RUnlock()
+	return len(c.guidIndex) == 0 && len(c.nameIndex) == 0
 }
