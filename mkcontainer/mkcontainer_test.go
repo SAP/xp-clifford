@@ -50,6 +50,9 @@ var _ = Describe("A Container", func() {
 		It("returns an empyt list of names", func(){
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
+		It("returns an empty container", func(){
+			Expect(cnt.IsEmpty()).To(BeTrue())
+		})
 	})
 	Describe("after storing a single ObjectWithGUID", func(){
 		var owg mkcontainer.Item
@@ -72,8 +75,11 @@ var _ = Describe("A Container", func() {
 		It("does not contain object with name 'name1'", func(){
 			Expect(cnt.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func(){
+		It("returns an empty list of names", func(){
 			Expect(cnt.GetNames()).To(BeEmpty())
+		})
+		It("returns a non-empty container", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 	Describe("after storing a multiple ObjectWithGUIDs", func(){
@@ -112,6 +118,9 @@ var _ = Describe("A Container", func() {
 		It("returns an empyt list of names", func(){
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
+		It("returns a non-empty container", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
+		})
 	})
 	Describe("after storing a single ObjectWithName", func(){
 		var own mkcontainer.Item
@@ -144,6 +153,9 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ItemWithName{
 				own.(mkcontainer.ItemWithName),
 			}))
+		})
+		It("returns a non-empty container", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 	Describe("after storing multiple ObjectWithName", func(){
@@ -190,6 +202,9 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ItemWithName{
 				own[1].(mkcontainer.ItemWithName),
 			}))
+		})
+		It("returns a non-empty container", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 	Describe("after storing multiple mixed Objects", func(){
@@ -250,6 +265,9 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ItemWithName{
 				own[1].(mkcontainer.ItemWithName),
 			}))
+		})
+		It("returns a non-empty container", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 })
