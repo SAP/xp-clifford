@@ -50,6 +50,9 @@ var _ = Describe("A Container", func() {
 		It("returns an empyt list of names", func(){
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
+		It("is empty", func(){
+			Expect(cnt.IsEmpty()).To(BeTrue())
+		})
 	})
 	Describe("after storing a single ObjectWithGUID", func(){
 		var owg mkcontainer.Item
@@ -74,6 +77,9 @@ var _ = Describe("A Container", func() {
 		})
 		It("returns an empyt list of names", func(){
 			Expect(cnt.GetNames()).To(BeEmpty())
+		})
+		It("is not empty", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 	Describe("after storing a multiple ObjectWithGUIDs", func(){
@@ -112,6 +118,9 @@ var _ = Describe("A Container", func() {
 		It("returns an empyt list of names", func(){
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
+		It("is not empty", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
+		})
 	})
 	Describe("after storing a single ObjectWithName", func(){
 		var own mkcontainer.Item
@@ -144,6 +153,9 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ItemWithName{
 				own.(mkcontainer.ItemWithName),
 			}))
+		})
+		It("is not empty", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 	Describe("after storing multiple ObjectWithName", func(){
@@ -190,6 +202,9 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ItemWithName{
 				own[1].(mkcontainer.ItemWithName),
 			}))
+		})
+		It("is not empty", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 	Describe("after storing multiple mixed Objects", func(){
@@ -250,6 +265,9 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ItemWithName{
 				own[1].(mkcontainer.ItemWithName),
 			}))
+		})
+		It("is not empty", func(){
+			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
 })
