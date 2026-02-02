@@ -2010,6 +2010,78 @@ The `RFC1035LowerSubdomainRelaxed` rule combines `RFC1035LowerSubdomain` and `RF
 | `99Luftballons`        | `99luftballons`        |
 | `admin@example.com`    | `admin-at-example.com` |
 
+## Packages
+
+### mkcontainer
+
+The `mkcontainer` package provides a thread-safe multi-key container for storing and retrieving items indexed by multiple keys simultaneously.
+
+#### Features
+
+- **Multi-key indexing**: Items can be indexed by GUID, name, or both
+- **Thread-safe**: All operations are safe for concurrent use
+- **Flexible storage**: Store any type that implements the required interfaces
+- **Efficient lookups**: O(1) lookups by GUID, O(1) lookups by name
+
+#### Interfaces
+
+Items are indexed based on which interfaces they implement:
+
+| Interface | Method | Uniqueness | Lookup Returns |
+|-----------|--------|------------|----------------|
+| `ItemWithGUID` | `GetGUID() string` | Must be unique | Single item |
+| `ItemWithName` | `GetName() string` | Not unique | Slice of items |
+
+An item may implement both interfaces to be indexed by both GUID and name.
+
+#### Example
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/SAP/xp-clifford/mkcontainer"
+)
+
+// Document implements both ItemWithGUID and ItemWithName
+type Document struct {
+    ID    string
+    Title string
+}
+
+func (d *Document) GetGUID() string { return d.ID }
+func (d *Document) GetName() string { return d.Title }
+
+func main() {
+    c := mkcontainer.New()
+
+    // Store multiple documents
+    c.Store(
+        &Document{ID: "doc-1", Title: "Report"},
+        &Document{ID: "doc-2", Title: "Report"},
+        &Document{ID: "doc-3", Title: "Summary"},
+    )
+
+    // Lookup by unique GUID
+    doc := c.GetByGUID("doc-1")
+    fmt.Printf("Found: %s\n", doc.(*Document).Title)
+
+    // Lookup all documents with the same name
+    reports := c.GetByName("Report")
+    fmt.Printf("Found %d reports\n", len(reports))
+
+    // Iterate over all GUIDs (sorted)
+    for _, guid := range c.GetGUIDs() {
+        fmt.Printf("GUID: %s\n", guid)
+    }
+
+    // Iterate over all items by GUID
+    for guid, item := range c.AllByGUIDs() {
+        fmt.Printf("%s -> %s\n", guid, item.(*Document).Title)
+    }
+}
+
 ### Footnotes
 
 <sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> [Object Names and IDs - kubernetes.io](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/)
