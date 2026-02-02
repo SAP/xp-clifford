@@ -774,7 +774,7 @@ See the example in action:
 
 #### IntInput widget
 
-IntInput widget works similarly to the [TextInput](#textinput-widget)TextInput. It only accepts integer values and the sensitive parameter is missing.
+IntInput widget works similarly to the [TextInput](#textinput-widget) widget. It only accepts integer values and the sensitive parameter is missing.
 
 #### MultiInput widget
 
