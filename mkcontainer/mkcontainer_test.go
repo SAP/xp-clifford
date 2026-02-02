@@ -17,7 +17,7 @@ func (towg *testOWG) GetGUID() string {
 	return towg.guid
 }
 
-var _ mkcontainer.ObjectWithGUID = &testOWG{}
+var _ mkcontainer.ItemWithGUID = &testOWG{}
 
 type testOWN struct {
 	name string
@@ -27,7 +27,7 @@ func (town *testOWN) GetName() string {
 	return town.name
 }
 
-var _ mkcontainer.ObjectWithName = &testOWN{}
+var _ mkcontainer.ItemWithName = &testOWN{}
 
 var _ = Describe("A Container", func() {
 	var cnt mkcontainer.Container
@@ -52,7 +52,7 @@ var _ = Describe("A Container", func() {
 		})
 	})
 	Describe("after storing a single ObjectWithGUID", func(){
-		var owg mkcontainer.Object
+		var owg mkcontainer.Item
 
 		BeforeEach(func(){
 			owg = &testOWG{"guid1"}
@@ -77,10 +77,10 @@ var _ = Describe("A Container", func() {
 		})
 	})
 	Describe("after storing a multiple ObjectWithGUIDs", func(){
-		var owg []mkcontainer.Object
+		var owg []mkcontainer.Item
 
 		BeforeEach(func(){
-			owg = []mkcontainer.Object{
+			owg = []mkcontainer.Item{
 				&testOWG{"guid1"},
 				&testOWG{"guid2"},
 				&testOWG{"guid3"},
@@ -114,7 +114,7 @@ var _ = Describe("A Container", func() {
 		})
 	})
 	Describe("after storing a single ObjectWithName", func(){
-		var own mkcontainer.Object
+		var own mkcontainer.Item
 
 		BeforeEach(func(){
 			own = &testOWN{"name1"}
@@ -130,8 +130,8 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByGUIDs()).To(BeEmpty())
 		})
 		It("can return it by name", func(){
-			Expect(cnt.GetByName("name1")).To(Equal([]mkcontainer.ObjectWithName{
-				own.(mkcontainer.ObjectWithName),
+			Expect(cnt.GetByName("name1")).To(Equal([]mkcontainer.ItemWithName{
+				own.(mkcontainer.ItemWithName),
 			}))
 			Expect(cnt.GetByName("unknown")).To(BeNil())
 		})
@@ -141,16 +141,16 @@ var _ = Describe("A Container", func() {
 		It("can be iterated by names", func(){
 			Expect(cnt.AllByNames()).To(HaveLen(1))
 
-			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ObjectWithName{
-				own.(mkcontainer.ObjectWithName),
+			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ItemWithName{
+				own.(mkcontainer.ItemWithName),
 			}))
 		})
 	})
 	Describe("after storing multiple ObjectWithName", func(){
-		var own []mkcontainer.Object
+		var own []mkcontainer.Item
 
 		BeforeEach(func(){
-			own = []mkcontainer.Object{
+			own = []mkcontainer.Item{
 				&testOWN{"name1"},
 				&testOWN{"name2"},
 				&testOWN{"name1"},
@@ -167,12 +167,12 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByGUIDs()).To(BeEmpty())
 		})
 		It("can return it by name", func(){
-			Expect(cnt.GetByName("name1")).To(Equal([]mkcontainer.ObjectWithName{
-				own[0].(mkcontainer.ObjectWithName),
-				own[2].(mkcontainer.ObjectWithName),
+			Expect(cnt.GetByName("name1")).To(Equal([]mkcontainer.ItemWithName{
+				own[0].(mkcontainer.ItemWithName),
+				own[2].(mkcontainer.ItemWithName),
 			}))
-			Expect(cnt.GetByName("name2")).To(Equal([]mkcontainer.ObjectWithName{
-				own[1].(mkcontainer.ObjectWithName),
+			Expect(cnt.GetByName("name2")).To(Equal([]mkcontainer.ItemWithName{
+				own[1].(mkcontainer.ItemWithName),
 			}))
 			Expect(cnt.GetByName("unknown")).To(BeNil())
 		})
@@ -183,20 +183,20 @@ var _ = Describe("A Container", func() {
 		})
 		It("can be iterated by names", func(){
 			Expect(cnt.AllByNames()).To(HaveLen(2))
-			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ObjectWithName{
-				own[0].(mkcontainer.ObjectWithName),
-				own[2].(mkcontainer.ObjectWithName),
+			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ItemWithName{
+				own[0].(mkcontainer.ItemWithName),
+				own[2].(mkcontainer.ItemWithName),
 			}))
-			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ObjectWithName{
-				own[1].(mkcontainer.ObjectWithName),
+			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ItemWithName{
+				own[1].(mkcontainer.ItemWithName),
 			}))
 		})
 	})
 	Describe("after storing multiple mixed Objects", func(){
-		var own []mkcontainer.Object
+		var own []mkcontainer.Item
 
 		BeforeEach(func(){
-			own = []mkcontainer.Object{
+			own = []mkcontainer.Item{
 				&testOWN{"name1"},
 				&testOWN{"name2"},
 				&testOWN{"name1"},
@@ -227,12 +227,12 @@ var _ = Describe("A Container", func() {
 			Expect(cnt.AllByGUIDs()).To(HaveKeyWithValue("guid3", own[5]))
 		})
 		It("can return it by name", func(){
-			Expect(cnt.GetByName("name1")).To(Equal([]mkcontainer.ObjectWithName{
-				own[0].(mkcontainer.ObjectWithName),
-				own[2].(mkcontainer.ObjectWithName),
+			Expect(cnt.GetByName("name1")).To(Equal([]mkcontainer.ItemWithName{
+				own[0].(mkcontainer.ItemWithName),
+				own[2].(mkcontainer.ItemWithName),
 			}))
-			Expect(cnt.GetByName("name2")).To(Equal([]mkcontainer.ObjectWithName{
-				own[1].(mkcontainer.ObjectWithName),
+			Expect(cnt.GetByName("name2")).To(Equal([]mkcontainer.ItemWithName{
+				own[1].(mkcontainer.ItemWithName),
 			}))
 			Expect(cnt.GetByName("unknown")).To(BeNil())
 		})
@@ -243,12 +243,12 @@ var _ = Describe("A Container", func() {
 		})
 		It("can be iterated by names", func(){
 			Expect(cnt.AllByNames()).To(HaveLen(2))
-			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ObjectWithName{
-				own[0].(mkcontainer.ObjectWithName),
-				own[2].(mkcontainer.ObjectWithName),
+			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name1", []mkcontainer.ItemWithName{
+				own[0].(mkcontainer.ItemWithName),
+				own[2].(mkcontainer.ItemWithName),
 			}))
-			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ObjectWithName{
-				own[1].(mkcontainer.ObjectWithName),
+			Expect(cnt.AllByNames()).To(HaveKeyWithValue("name2", []mkcontainer.ItemWithName{
+				own[1].(mkcontainer.ItemWithName),
 			}))
 		})
 	})
