@@ -680,6 +680,7 @@ The `EventHandler.Warn` method handles `erratt.Error` values in the same manner.
 
 Note that for the widgets to run, the CLI tool must be executed in an interactive terminal. This is not always the case by default, when running or debugging an application within an IDE (like GoLand) using a Run Configuration. In such cases, make sure to configure the Run Configuration appropriately. Specifically for [GoLand](https://www.jetbrains.com/help/go/run-debug-configuration.html) it can be done by selecting `Emulate terminal in output console`.
 
+<a id="textinput-widget"></a>
 
 #### TextInput widget
 
@@ -770,6 +771,10 @@ See the example in action:
 
 ![img](examples/textinput/example.gif "TextInput example")
 
+
+#### IntInput widget
+
+IntInput widget works similarly to the [TextInput](#textinput-widget)TextInput. It only accepts integer values and the sensitive parameter is missing.
 
 #### MultiInput widget
 
@@ -873,6 +878,7 @@ CLI tools built using `xp-clifford` can be configured through several methods:
 Currently, the following configuration parameter types are supported:
 
 -   `bool`
+-   `int`
 -   `string`
 -   `[]string`
 
@@ -1082,6 +1088,142 @@ CLIFFORD_TEST=1 go run ./examples/boolparam/main.go export
     INFO export command invoked test-value=true
 
 
+#### Int configuration parameter
+
+Create a new *int* configuration parameter using the `configparam.Int` function:
+
+```go
+func Int(name, description string) *IntParam
+```
+
+The two mandatory arguments are *name* and *description*. Fine-tune the parameter with these methods:
+
+-   **`WithShortName`:** Single-character short command-line flag
+-   **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
+-   **`WithEnvVarName`:** Environment variable name for the parameter
+-   **`WithDefaultValue`:** Default value of the parameter
+
+Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
+
+The `ValueOrAsk` method returns the value if set. Otherwise, it prompts for the value interactively using the `IntInput` widget.
+
+
+Here is an int configuration parameter definition:
+
+```go
+var testParam = configparam.Int("port", "port number").
+        WithShortName("p").
+        WithEnvVarName("PORT").
+		WithDefaultValue(443)
+```
+
+Add the parameter to the `export` subcommand:
+
+```go
+export.AddConfigParams(testParam)
+```
+
+A complete working example:
+
+```go
+package main
+
+import (
+	"context"
+	"log/slog"
+
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
+)
+
+func exportLogic(_ context.Context, events export.EventHandler) error {
+	slog.Info("export command invoked",
+		"port", testParam.Value(),
+		"is-set", testParam.IsSet(),
+	)
+
+	// If not set, ask the value
+	username, err := testParam.ValueOrAsk(ctx)
+	if err != nil {
+		return err
+	}
+
+	slog.Info("value set by user", "value", username)
+
+	events.Stop()
+	return nil
+}
+
+var testParam = configparam.Int("port", "port number").
+        WithShortName("p").
+        WithEnvVarName("PORT").
+		WithDefaultValue(443)
+
+func main() {
+	cli.Configuration.ShortName = "test"
+	cli.Configuration.ObservedSystem = "test system"
+	export.AddConfigParams(testParam)
+	export.SetCommand(exportLogic)
+	cli.Execute()
+}
+```
+
+The new parameter appears in the help output:
+
+```sh
+go run ./examples/intparam/main.go export --help
+```
+
+```
+Export test system resources and transform them into managed resources that the Crossplane provider can consume
+
+Usage:
+  test-exporter export [flags]
+
+Flags:
+  -h, --help            help for export
+  -k, --kind strings    Resource kinds to export
+  -o, --output string   redirect the YAML output to a file
+  -p, --port int        port number (default 443)
+
+Global Flags:
+  -c, --config string   Configuration file
+  -v, --verbose         Verbose output
+```
+
+Set a value using the `--test` flag:
+
+```sh
+go run ./examples/boolparam/main.go export --port 5432
+```
+
+    INFO export command invoked port=5432 is-set=true
+    INFO value set by user value=5432
+
+Or using the shorthand `-p` flag:
+
+```sh
+go run ./examples/boolparam/main.go export -p 5432
+```
+
+    INFO export command invoked port=5432 is-set=true
+    INFO value set by user value=5432
+
+Or using the `PORT` environment variable:
+
+```sh
+PORT=5432 go run ./examples/boolparam/main.go export
+```
+
+    INFO export command invoked port=5432 is-set=true
+    INFO value set by user value=5432
+
+When no value is provided, the `IntInput` widget prompts for it interactively:
+
+![img](examples/intparam/example.gif "Asking an int config parameter value")
+
+
 #### String configuration parameter
 
 Create a new *string* configuration parameter using the `configparam.String` function:
@@ -1230,7 +1372,7 @@ The two mandatory arguments are *name* and *description*. Fine-tune the paramete
 -   **`WithPossibleValues`:** Limit the selection options offered during `ValueOrAsk`
 -   **`WithPossibleValuesFn`:** Function that provides the selection options offered during `ValueOrAsk`
 
-Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
+Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has expliciktly set the value.
 
 The `ValueOrAsk` method returns the value if set. Otherwise, it prompts for the value interactively using the `MultiInput` widget. Interactive prompting requires setting possible values with `WithPossibleValues` or `WithPossibleValuesFn`.
 
