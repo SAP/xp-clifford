@@ -1,3 +1,4 @@
+[![Go Reference](https://pkg.go.dev/badge/github.com/SAP/xp-clifford.svg)](https://pkg.go.dev/github.com/SAP/xp-clifford)
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/xp-clifford)](https://api.reuse.software/info/github.com/SAP/xp-clifford)
 
 # xp-clifford
