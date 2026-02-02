@@ -38,6 +38,8 @@ type Container interface {
 	// as key-value pairs (name -> slice of items).
 	AllByNames() iter.Seq2[string, []ItemWithName]
 
+	// IsEmpty returns true if the container has no items stored,
+	// false otherwise.
 	IsEmpty() bool
 }
 
