@@ -1275,7 +1275,7 @@ import (
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
 	slog.Info("export command invoked",
-		"port", testParam.Value(),
+		"temp", testParam.Value(),
 		"is-set", testParam.IsSet(),
 	)
 
