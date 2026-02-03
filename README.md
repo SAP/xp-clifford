@@ -772,9 +772,9 @@ See the example in action:
 ![img](examples/textinput/example.gif "TextInput example")
 
 
-#### IntInput widget
+#### IntInput, FloatInput widgets
 
-IntInput widget works similarly to the [TextInput](#textinput-widget) widget. It only accepts integer values and the sensitive parameter is missing.
+IntInput and FloatInput widgets work similarly to the [TextInput](#textinput-widget) widget. They only accept integer and float values respectively. These widgets don't support the `sensitive` parameter.
 
 #### MultiInput widget
 
@@ -1144,12 +1144,12 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 	)
 
 	// If not set, ask the value
-	username, err := testParam.ValueOrAsk(ctx)
+	port, err := testParam.ValueOrAsk(ctx)
 	if err != nil {
 		return err
 	}
 
-	slog.Info("value set by user", "value", username)
+	slog.Info("value set by user", "value", port)
 
 	events.Stop()
 	return nil
@@ -1192,7 +1192,7 @@ Global Flags:
   -v, --verbose         Verbose output
 ```
 
-Set a value using the `--test` flag:
+Set a value using the `--port` flag:
 
 ```sh
 go run ./examples/boolparam/main.go export --port 5432
@@ -1222,6 +1222,143 @@ PORT=5432 go run ./examples/boolparam/main.go export
 When no value is provided, the `IntInput` widget prompts for it interactively:
 
 ![img](examples/intparam/example.gif "Asking an int config parameter value")
+
+
+#### Float configuration parameter
+
+Create a new *float* configuration parameter using the `configparam.Float` function:
+
+```go
+func Float(name, description string) *FloatParam
+```
+
+The two mandatory arguments are *name* and *description*. Fine-tune the parameter with these methods:
+
+-   **`WithShortName`:** Single-character short command-line flag
+-   **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
+-   **`WithEnvVarName`:** Environment variable name for the parameter
+-   **`WithDefaultValue`:** Default value of the parameter
+
+Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
+
+The `ValueOrAsk` method returns the value if set. Otherwise, it prompts for the value interactively using the `FloatInput` widget.
+
+
+Here is an int configuration parameter definition:
+
+```go
+var testParam = configparam.Float("temp", "temperature").
+	WithShortName("t").
+	WithEnvVarName("TEMP").
+	WithDefaultValue(36.7)
+```
+
+Add the parameter to the `export` subcommand:
+
+```go
+export.AddConfigParams(testParam)
+```
+
+A complete working example:
+
+```go
+package main
+
+import (
+	"context"
+	"log/slog"
+
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
+)
+
+func exportLogic(ctx context.Context, events export.EventHandler) error {
+	slog.Info("export command invoked",
+		"port", testParam.Value(),
+		"is-set", testParam.IsSet(),
+	)
+
+	// If not set, ask the value
+	temp, err := testParam.ValueOrAsk(ctx)
+	if err != nil {
+		return err
+	}
+
+	slog.Info("value set by user", "value", temp)
+
+	events.Stop()
+	return nil
+}
+
+var testParam = configparam.Float("temp", "temperature").
+	WithShortName("t").
+	WithEnvVarName("TEMP").
+	WithDefaultValue(36.7)
+
+func main() {
+	cli.Configuration.ShortName = "test"
+	cli.Configuration.ObservedSystem = "test system"
+	export.AddConfigParams(testParam)
+	export.SetCommand(exportLogic)
+        cli.Execute()
+}
+```
+
+The new parameter appears in the help output:
+
+```sh
+go run ./examples/intparam/main.go export --help
+```
+
+```
+Export test system resources and transform them into managed resources that the Crossplane provider can consume
+
+Usage:
+  test-exporter export [flags]
+
+Flags:
+  -h, --help            help for export
+  -k, --kind strings    Resource kinds to export
+  -o, --output string   redirect the YAML output to a file
+  -t, --temp float      temperature (default 36.7)
+
+Global Flags:
+  -c, --config string   Configuration file
+  -v, --verbose         Verbose output
+```
+
+Set a value using the `--temp` flag:
+
+```sh
+go run ./examples/boolparam/main.go export --temp 43.2
+```
+
+    INFO export command invoked port=43.2 is-set=true
+    INFO value set by user value=43.2
+
+
+Or using the shorthand `-t` flag:
+
+```sh
+go run ./examples/boolparam/main.go export -t 43.2
+```
+
+    INFO export command invoked port=43.2 is-set=true
+    INFO value set by user value=43.2
+
+Or using the `TEMP` environment variable:
+
+```sh
+TEMP=43.2 go run ./examples/boolparam/main.go export
+```
+
+    INFO export command invoked port=43.2 is-set=true
+    INFO value set by user value=43.2
+
+When no value is provided, the `FloatInput` widget prompts for it interactively:
+
+![img](examples/floatparam/example.gif "Asking a float config parameter value")
 
 
 #### String configuration parameter

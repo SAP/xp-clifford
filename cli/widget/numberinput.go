@@ -53,9 +53,24 @@ func intValidator(s string) error {
 	return nil
 }
 
+// floatValidator validates that the given string can be parsed as a float.
+//
+// Parameters:
+//   - s: The string to validate.
+//
+// Returns:
+//   - nil if the string is a valid float representation.
+//   - An annotated error with the invalid input if parsing fails.
+func floatValidator(s string) error {
+	_, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		return erratt.Errorf("invalid input: %w", err).With("input", s)
+	}
+	return nil
+}
+
 // IntInput presents an interactive single-line prompt for entering an integer value.
 // The prompt validates user input in real-time and only accepts valid integer numbers.
-// The form uses the Catppuccin theme for styling.
 //
 // Parameters:
 //   - ctx: Context for cancellation or timeout control of the prompt. If the context
@@ -73,4 +88,25 @@ func IntInput(ctx context.Context, title, placeholder string) (int, error) {
 		return 0, err
 	}
 	return strconv.Atoi(s)
+}
+
+// FloatInput presents an interactive single-line prompt for entering a float value.
+// The prompt validates user input in real-time and only accepts valid float numbers.
+//
+// Parameters:
+//   - ctx: Context for cancellation or timeout control of the prompt. If the context
+//     is cancelled or times out, the function returns an error.
+//   - title: Text displayed above the input field as a label to describe the expected input.
+//   - placeholder: Hint text shown inside the input field when it is empty, providing
+//     an example or guidance to the user.
+//
+// Returns:
+//   - The entered float value if successful.
+//   - An error if the form was cancelled, timed out, or if parsing the final value fails.
+func FloatInput(ctx context.Context, title, placeholder string) (float64, error) {
+	s, err := validatedInput(ctx, title, placeholder, floatValidator)
+	if err != nil {
+		return 0, err
+	}
+	return strconv.ParseFloat(s, 64)
 }
