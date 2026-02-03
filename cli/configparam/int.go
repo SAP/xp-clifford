@@ -64,7 +64,7 @@ func (p *IntParam) askValue(ctx context.Context) (int, error) {
 	)
 }
 
-// AskValue prompts the user for an integer value and stores it in viper.
+// AskValue prompts the user for an integer value.
 // This method always prompts the user, regardless of whether a value
 // has already been set. The entered value is persisted in the configuration.
 // Returns the entered value and any error that occurred during input.

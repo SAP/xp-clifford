@@ -16,21 +16,21 @@ func exportLogic(ctx context.Context, events export.EventHandler) error {
 	)
 
 	// If not set, ask the value
-	port, err := testParam.ValueOrAsk(ctx)
+	temp, err := testParam.ValueOrAsk(ctx)
 	if err != nil {
 		return err
 	}
 
-	slog.Info("value set by user", "value", port)
+	slog.Info("value set by user", "value", temp)
 
 	events.Stop()
 	return nil
 }
 
-var testParam = configparam.Int("port", "port number").
-	WithShortName("p").
-	WithEnvVarName("PORT").
-	WithDefaultValue(443)
+var testParam = configparam.Float("temp", "temperature").
+	WithShortName("t").
+	WithEnvVarName("TEMP").
+	WithDefaultValue(36.7)
 
 func main() {
 	cli.Configuration.ShortName = "test"
