@@ -10,8 +10,6 @@ import (
 )
 
 // IntParam represents a configuration parameter that holds an integer value.
-// It embeds configWithDefaultValue to provide common configuration functionality
-// with integer-specific behavior.
 type IntParam struct {
 	*configWithDefaultValue[IntParam, int]
 }

@@ -10,8 +10,6 @@ import (
 )
 
 // FloatParam represents a configuration parameter that holds a float value.
-// It embeds configWithDefaultValue to provide common configuration functionality
-// with float-specific behavior.
 type FloatParam struct {
 	*configWithDefaultValue[FloatParam, float64]
 }

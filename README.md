@@ -772,9 +772,9 @@ See the example in action:
 ![img](examples/textinput/example.gif "TextInput example")
 
 
-#### IntInput, FloatInput widgets
+#### IntInput, FloatInput, DurationInput widgets
 
-IntInput and FloatInput widgets work similarly to the [TextInput](#textinput-widget) widget. They only accept integer and float values respectively. These widgets don't support the `sensitive` parameter.
+IntInput, FloatInput, DurationInput widgets work similarly to the [TextInput](#textinput-widget) widget. They only accept integer, float, and duration values respectively. These widgets don't support the `sensitive` parameter.
 
 #### MultiInput widget
 
@@ -1195,7 +1195,7 @@ Global Flags:
 Set a value using the `--port` flag:
 
 ```sh
-go run ./examples/boolparam/main.go export --port 5432
+go run ./examples/intparam/main.go export --port 5432
 ```
 
     INFO export command invoked port=5432 is-set=true
@@ -1204,7 +1204,7 @@ go run ./examples/boolparam/main.go export --port 5432
 Or using the shorthand `-p` flag:
 
 ```sh
-go run ./examples/boolparam/main.go export -p 5432
+go run ./examples/intparam/main.go export -p 5432
 ```
 
     INFO export command invoked port=5432 is-set=true
@@ -1213,7 +1213,7 @@ go run ./examples/boolparam/main.go export -p 5432
 Or using the `PORT` environment variable:
 
 ```sh
-PORT=5432 go run ./examples/boolparam/main.go export
+PORT=5432 go run ./examples/intparam/main.go export
 ```
 
     INFO export command invoked port=5432 is-set=true
@@ -1308,7 +1308,7 @@ func main() {
 The new parameter appears in the help output:
 
 ```sh
-go run ./examples/intparam/main.go export --help
+go run ./examples/floatparam/main.go export --help
 ```
 
 ```
@@ -1331,7 +1331,7 @@ Global Flags:
 Set a value using the `--temp` flag:
 
 ```sh
-go run ./examples/boolparam/main.go export --temp 43.2
+go run ./examples/floatparam/main.go export --temp 43.2
 ```
 
     INFO export command invoked port=43.2 is-set=true
@@ -1341,7 +1341,7 @@ go run ./examples/boolparam/main.go export --temp 43.2
 Or using the shorthand `-t` flag:
 
 ```sh
-go run ./examples/boolparam/main.go export -t 43.2
+go run ./examples/floatparam/main.go export -t 43.2
 ```
 
     INFO export command invoked port=43.2 is-set=true
@@ -1350,7 +1350,7 @@ go run ./examples/boolparam/main.go export -t 43.2
 Or using the `TEMP` environment variable:
 
 ```sh
-TEMP=43.2 go run ./examples/boolparam/main.go export
+TEMP=43.2 go run ./examples/floatparam/main.go export
 ```
 
     INFO export command invoked port=43.2 is-set=true
@@ -1359,6 +1359,144 @@ TEMP=43.2 go run ./examples/boolparam/main.go export
 When no value is provided, the `FloatInput` widget prompts for it interactively:
 
 ![img](examples/floatparam/example.gif "Asking a float config parameter value")
+
+
+#### Duration configuration parameter
+
+Create a new *duration* configuration parameter using the `configparam.Duration` function:
+
+```go
+func Duration(name, description string) *DurationParam
+```
+
+The two mandatory arguments are *name* and *description*. Fine-tune the parameter with these methods:
+
+-   **`WithShortName`:** Single-character short command-line flag
+-   **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
+-   **`WithEnvVarName`:** Environment variable name for the parameter
+-   **`WithDefaultValue`:** Default value of the parameter
+
+Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
+
+The `ValueOrAsk` method returns the value if set. Otherwise, it prompts for the value interactively using the `DurationInput` widget.
+
+
+Here is an int configuration parameter definition:
+
+```go
+var testParam = configparam.Duration("timeout", "request timeout").
+	WithShortName("t").
+	WithEnvVarName("TIMEOUT").
+	WithDefaultValue(30*time.Second)
+```
+
+Add the parameter to the `export` subcommand:
+
+```go
+export.AddConfigParams(testParam)
+```
+
+A complete working example:
+
+```go
+package main
+
+import (
+	"context"
+	"log/slog"
+	"time"
+
+	"github.com/SAP/xp-clifford/cli"
+	"github.com/SAP/xp-clifford/cli/configparam"
+	"github.com/SAP/xp-clifford/cli/export"
+)
+
+func exportLogic(ctx context.Context, events export.EventHandler) error {
+	slog.Info("export command invoked",
+		"timeout", testParam.Value(),
+		"is-set", testParam.IsSet(),
+	)
+
+	// If not set, ask the value
+	timeout, err := testParam.ValueOrAsk(ctx)
+	if err != nil {
+		return err
+	}
+
+	slog.Info("value set by user", "value", timeout)
+
+	events.Stop()
+	return nil
+}
+
+var testParam = configparam.Duration("timeout", "request timeout").
+	WithShortName("t").
+	WithEnvVarName("TIMEOUT").
+	WithDefaultValue(30*time.Second)
+
+func main() {
+	cli.Configuration.ShortName = "test"
+	cli.Configuration.ObservedSystem = "test system"
+	export.AddConfigParams(testParam)
+	export.SetCommand(exportLogic)
+        cli.Execute()
+}
+```
+
+The new parameter appears in the help output:
+
+```sh
+go run ./examples/intparam/main.go export --help
+```
+
+```
+Export test system resources and transform them into managed resources that the Crossplane provider can consume
+
+Usage:
+  test-exporter export [flags]
+
+Flags:
+  -h, --help               help for export
+  -k, --kind strings       Resource kinds to export
+  -o, --output string      redirect the YAML output to a file
+  -t, --timeout duration   request timeout (default 30s)
+
+Global Flags:
+  -c, --config string   Configuration file
+  -v, --verbose         Verbose output
+```
+
+Set a value using the `--timeout` flag:
+
+```sh
+go run ./examples/durationparam/main.go export --timeout 30m
+```
+
+    INFO export command invoked timeout=30m0s is-set=true
+    INFO value set by user value=30m0s
+
+
+Or using the shorthand `-t` flag:
+
+```sh
+go run ./examples/durationparam/main.go export -t 30m
+```
+
+    INFO export command invoked timeout=30m0s is-set=true
+    INFO value set by user value=30m0s
+
+Or using the `TIMEOUT` environment variable:
+
+```sh
+TIMEOUT=30m go run ./examples/durationparam/main.go export
+```
+
+    INFO export command invoked timeout=30m0s is-set=true
+    INFO value set by user value=30m0s
+
+When no value is provided, the `DurationInput` widget prompts for it interactively:
+
+![img](examples/durationparam/example.gif "Asking a duration config parameter value")
 
 
 #### String configuration parameter
