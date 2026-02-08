@@ -6,21 +6,25 @@
     devshell.url = "github:numtide/devshell";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs = {nixpkgs.follows = "nixpkgs";};
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     go-overlay = {
       url = "github:purpleclay/go-overlay";
-      inputs = {nixpkgs.follows = "nixpkgs";};
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix2container = {
       url = "github:nlewo/nix2container";
-      inputs = {nixpkgs.follows = "nixpkgs";};
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
     github-actions-nix.url = "github:synapdeck/github-actions-nix";
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -243,6 +247,9 @@
         # packages.default = pkgs.hello;
       };
       flake = {
+        githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
+          checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux" "x86_64-darwin"] inputs.self.checks;
+        };
         # The usual flake attributes can be defined here, including system-
         # agnostic ones like nixosModule and system-enumerating ones, although
         # those are more easily expressed in perSystem.
