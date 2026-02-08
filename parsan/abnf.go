@@ -698,7 +698,7 @@ func Seq(min, max int, rule Rule) Rule {
 	}
 	types := make([]Rule, 0, max-min+1)
 	for i := min; i <= max; i++ {
-		var rType Rule = Concat(slices.Repeat[[]Rule]([]Rule{rule}, i)...)
+		var rType = Concat(slices.Repeat[[]Rule]([]Rule{rule}, i)...)
 		types = append(types, rType)
 	}
 	return Alternative(types...)

@@ -80,11 +80,11 @@ func (p *StringSliceParam) Value() []string {
 // After successful selection the chosen slice is stored and the
 // parameter is considered set.
 func (p *StringSliceParam) ValueOrAsk(ctx context.Context) ([]string, error) {
-	if p.configParam.IsSet() {
+	if p.IsSet() {
 		return p.Value(), nil
 	}
 	if len(p.possibleValues) == 0 && p.possibleValuesFn == nil {
-		return nil, erratt.New("StringSliceParam ValueOrAsk invoked but possibleValues are not set", "name", p.configParam.Name)
+		return nil, erratt.New("StringSliceParam ValueOrAsk invoked but possibleValues are not set", "name", p.Name)
 	}
 	possibleValues := p.possibleValues
 	if len(possibleValues) == 0 {
@@ -98,7 +98,7 @@ func (p *StringSliceParam) ValueOrAsk(ctx context.Context) ([]string, error) {
 		}
 	}
 	values, err := widget.MultiInput(ctx,
-		p.configParam.Description,
+		p.Description,
 		possibleValues,
 	)
 	if err != nil {

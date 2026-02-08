@@ -21,7 +21,7 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 				"password": "secret",
 			},
 		})
-		if i % 5 == 0 {
+		if i%5 == 0 {
 			events.Warn(erratt.New("test warning", "reason", "test"))
 		}
 	}

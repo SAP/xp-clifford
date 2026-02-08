@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"log/slog"
@@ -16,21 +15,21 @@ func login(_ context.Context) error {
 }
 
 var testParam = configparam.Bool("test", "test bool parameter").
-        WithShortName("t").
-        WithEnvVarName("CLIFFORD_TEST")
+	WithShortName("t").
+	WithEnvVarName("CLIFFORD_TEST")
 
 func main() {
 	cli.Configuration.ShortName = "test"
 	cli.Configuration.ObservedSystem = "test system"
 
 	var loginSubCommand = &cli.BasicSubCommand{
-		Name:         "login",
-		Short:        "Login demo subcommand",
-		Long:         "A subcommand demonstrating xp-clifford capabilities",
+		Name:  "login",
+		Short: "Login demo subcommand",
+		Long:  "A subcommand demonstrating xp-clifford capabilities",
 		ConfigParams: []configparam.ConfigParam{
 			testParam,
 		},
-		Run:          login,
+		Run: login,
 	}
 
 	cli.RegisterSubCommand(loginSubCommand)

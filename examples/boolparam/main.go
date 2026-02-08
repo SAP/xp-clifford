@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"log/slog"
@@ -17,8 +16,8 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 }
 
 var testParam = configparam.Bool("test", "test bool parameter").
-        WithShortName("t").
-        WithEnvVarName("CLIFFORD_TEST")
+	WithShortName("t").
+	WithEnvVarName("CLIFFORD_TEST")
 
 func main() {
 	cli.Configuration.ShortName = "test"

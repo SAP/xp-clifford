@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"log/slog"
@@ -12,7 +11,7 @@ import (
 
 func exportLogic(ctx context.Context, events export.EventHandler) error {
 	slog.Info("export command invoked",
-	        "secure", secureParam.Value(),
+		"secure", secureParam.Value(),
 		"secure-is-set", secureParam.IsSet(),
 		"protocols", protocolsParam.Value(),
 		"num-of-protos", len(protocolsParam.Value()),
@@ -38,8 +37,8 @@ func possibleProtocols() ([]string, error) {
 }
 
 var secureParam = configparam.Bool("secure", "secure protocol").
-        WithShortName("s").
-        WithEnvVarName("SECURE")
+	WithShortName("s").
+	WithEnvVarName("SECURE")
 
 var protocolsParam = configparam.StringSlice("protocol", "list of supported protocols").
 	WithShortName("p").
@@ -51,5 +50,5 @@ func main() {
 	cli.Configuration.ObservedSystem = "test system"
 	export.AddConfigParams(secureParam, protocolsParam)
 	export.SetCommand(exportLogic)
-        cli.Execute()
+	cli.Execute()
 }

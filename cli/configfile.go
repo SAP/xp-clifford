@@ -16,7 +16,7 @@ func init() {
 }
 
 func defaultConfigFileName() string {
-	return fmt.Sprintf("export-cli-config-%s", Configuration.CLIConfiguration.ShortName)
+	return fmt.Sprintf("export-cli-config-%s", Configuration.ShortName)
 }
 
 var ConfigFileParam = configparam.String("config", "Configuration file").WithShortName("c")

@@ -106,15 +106,15 @@ func newConfigWithDefaultValue[CP, T any](parent *CP, name, description string, 
 
 func (p *configWithDefaultValue[CP, T]) attachToCommand(flagFn func(name string, value T, usage string) *T, flagShortFn func(name, shorthand string, value T, usage string) *T) {
 	if p.ShortName != nil {
-		flagShortFn(p.configParam.FlagName, *p.configParam.ShortName, p.defaultValue.defaultValue, p.configParam.Description)
+		flagShortFn(p.FlagName, *p.ShortName, p.defaultValue.defaultValue, p.Description)
 	} else {
-		flagFn(p.configParam.FlagName, p.defaultValue.defaultValue, p.configParam.Description)
+		flagFn(p.FlagName, p.defaultValue.defaultValue, p.Description)
 	}
 }
 
 func (p *configWithDefaultValue[CP, T]) value(valueGetter func(string) T) T {
-	if p.configParam.IsSet() {
-		return valueGetter(p.configParam.Name)
+	if p.IsSet() {
+		return valueGetter(p.Name)
 	}
 	return p.defaultValue.defaultValue
 }
