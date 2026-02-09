@@ -17,12 +17,6 @@ jobs:
         with:
           persist-credentials: false
       - uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # version v31.9.0
-      - id: set-matrix
-        name: Generate Nix Matrix
-        run: |
-          set -Eeu
-          matrix="$(nix eval --json '.#githubActions.matrix')"
-          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
       - name: Restore and save Nix store
         uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # version v7.0.2
         with:
@@ -45,6 +39,12 @@ jobs:
           purge-last-accessed: P1DT12H
           # except any version with the key that is the same as the `primary-key`
           purge-primary-key: never
+      - id: set-matrix
+        name: Generate Nix Matrix
+        run: |
+          set -Eeu
+          matrix="$(nix eval --json '.#githubActions.matrix')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
   nix-build:
     permissions:
@@ -68,7 +68,6 @@ jobs:
             keep-outputs = true
             experimental-features = nix-command flakes
             accept-flake-config = true
-      - run: nix develop --no-pure-eval -c pre-commit run --all-files
       - name: Restore and save Nix store
         uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # version v7.0.2
         with:
@@ -91,3 +90,4 @@ jobs:
           purge-last-accessed: P1DT12H
           # except any version with the key that is the same as the `primary-key`
           purge-primary-key: never
+      - run: nix develop --no-pure-eval -c pre-commit run --all-files
