@@ -1,5 +1,5 @@
 {
-  description = "Description for the project";
+  description = "xp-clifford: Crossplane CLI Framework for Resource Data";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -34,19 +34,11 @@
         inputs.devenv.flakeModule
         inputs.git-hooks-nix.flakeModule
         inputs.github-actions-nix.flakeModule
-        # To import an internal flake module: ./other.nix
-        # To import an external flake module:
-        #   1. Add foo to inputs
-        #   2. Add foo as a parameter to the outputs function
-        #   3. Add here: foo.flakeModule
       ];
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {
         config,
-        # self',
-        # inputs',
         pkgs,
-        # system,
         ...
       }: {
         devenv.shells = let
@@ -57,8 +49,6 @@
           };
         in {
           default = {
-            # ++ config.pre-commit.settings.enabledPackages;
-            # enterShell = config.pre-commit.installationScript;
             packages = [
               pkgs.pre-commit
               pkgs.golangci-lint
@@ -106,153 +96,13 @@
             env = {
               GOTOOLCHAIN = pkgs.lib.mkForce "go${config.devenv.shells.default.languages.go.version}";
             };
-            # treefmt = {
-            #   enable = true;
-            #   config.programs.golangci-lint = {
-            #     enable = true;
-            #     enableLinters = [
-            #       "errcheck"
-            #       "ginkgolinter"
-            #       "govet"
-            #       "ineffassign"
-            #       "staticcheck"
-            #       "unused"
-            #     ];
-            #     includes = [""];
-            #     excludes = [".devenv/*"];
-            #     verbose = true;
-            #   };
-            # };
-            # files = {
-            #   "markdownlint.toml" = {
-            #     toml = {
-            #       MD010 = {
-            #         code_blocks = false;
-            #       };
-            #       MD013 = {
-            #         line_length = 256;
-            #       };
-            #       MD033 = {
-            #         allowed_elements = [
-            #           "a"
-            #           "sup"
-            #         ];
-            #       };
-            #     };
-            #   };
-            # };
-            scripts = {
-              go-lint = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  golangci-lint run
-                '';
-              };
-              go-format = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  golangci-lint fmt
-                '';
-              };
-              go-test = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  go test -v ./...
-                '';
-              };
-              gha-lint = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  ghalint run
-                '';
-                packages = [pkgs.ghalint];
-              };
-              nix-check = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  nix flake check --impure
-                '';
-              };
-              nix-format = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  alejandra flake.nix
-                '';
-                packages = [pkgs.alejandra];
-              };
-              md-lint = {
-                exec = ''
-                  cd -P -- "$(git rev-parse --show-toplevel)"
-                  markdownlint README.md --config markdownlint.toml
-
-                '';
-                packages = [pkgs.mado];
-              };
-              # actions = {
-              #   exec = ''
-              #     ls ${config.githubActions.workflowsDir}
-              #   '';
-              # };
-              check-all = {
-                exec = ''
-                  set -euxo pipefail
-                  go-format
-                  go-lint
-                  # go-test
-                  # gha-lint
-                  # nix-check
-                  # nix-format
-                  # md-lint
-                '';
-              };
-            };
           };
         };
-        # githubActions = {
-        #   enable = true;
-        #   workflows = {
-        #     ci = {
-        #       name = "CI";
-        #       on = ["push" "pull_request"];
-        #       jobs = {
-        #         check = {
-        #           runsOn = "ubuntu-latest";
-        #           steps = [
-        #             {
-        #               uses = "actions/checkout@6";
-        #             }
-        #           ];
-        #         };
-        #       };
-        #     };
-        #   };
-        # };
-        # pre-commit = {
-        #   check.enable = false;
-
-        #   settings = {
-        #     hooks.my = {
-        #       enable = true;
-        #       entry = "check-all";
-        #     };
-        #     # hooks.alejandra.enable = true;
-        #   };
-        # };
-
-        # Per-system attributes can be defined here. The self' and inputs'
-        # module parameters provide easy access to attributes of the same
-        # system.
-
-        # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
-        # packages.default = pkgs.hello;
       };
       flake = {
         githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
           checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux"] inputs.self.checks;
         };
-        # The usual flake attributes can be defined here, including system-
-        # agnostic ones like nixosModule and system-enumerating ones, although
-        # those are more easily expressed in perSystem.
       };
     };
 }
