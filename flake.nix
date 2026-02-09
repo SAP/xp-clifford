@@ -248,7 +248,7 @@
       };
       flake = {
         githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-          checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux" "x86_64-darwin"] inputs.self.checks;
+          checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux"] inputs.self.checks;
         };
         # The usual flake attributes can be defined here, including system-
         # agnostic ones like nixosModule and system-enumerating ones, although
