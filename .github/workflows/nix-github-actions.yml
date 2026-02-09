@@ -68,7 +68,7 @@ jobs:
             keep-outputs = true
             experimental-features = nix-command flakes
             accept-flake-config = true
-      - run: nix develop --no-pure-eval -c pre-commit run
+      - run: nix develop --no-pure-eval -c pre-commit run --all-files
       - name: Restore and save Nix store
         uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # version v7.0.2
         with:
