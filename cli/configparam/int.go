@@ -41,7 +41,7 @@ func (p *IntParam) Value() int {
 // otherwise it prompts the user for input interactively.
 // Returns the integer value and any error that occurred during input.
 func (p *IntParam) ValueOrAsk(ctx context.Context) (int, error) {
-	if p.configParam.IsSet() {
+	if p.IsSet() {
 		return p.Value(), nil
 	}
 	return p.AskValue(ctx)
@@ -50,7 +50,7 @@ func (p *IntParam) ValueOrAsk(ctx context.Context) (int, error) {
 // inputPrompt generates the prompt string displayed to the user
 // when requesting input for this parameter.
 func (p *IntParam) inputPrompt() string {
-	return fmt.Sprintf("%s [%s]: ", p.configParam.Description, p.configParam.Name)
+	return fmt.Sprintf("%s [%s]: ", p.Description, p.Name)
 }
 
 // askValue prompts the user for an integer input using the widget system.
@@ -58,7 +58,7 @@ func (p *IntParam) inputPrompt() string {
 func (p *IntParam) askValue(ctx context.Context) (int, error) {
 	return widget.IntInput(ctx,
 		p.inputPrompt(),
-		p.configParam.Example,
+		p.Example,
 	)
 }
 
@@ -71,6 +71,6 @@ func (p *IntParam) AskValue(ctx context.Context) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	viper.Set(p.configParam.Name, value)
+	viper.Set(p.Name, value)
 	return value, nil
 }

@@ -41,7 +41,7 @@ func (p *FloatParam) Value() float64 {
 // otherwise it prompts the user for input interactively.
 // Returns the float value and any error that occurred during input.
 func (p *FloatParam) ValueOrAsk(ctx context.Context) (float64, error) {
-	if p.configParam.IsSet() {
+	if p.IsSet() {
 		return p.Value(), nil
 	}
 	return p.AskValue(ctx)
@@ -50,7 +50,7 @@ func (p *FloatParam) ValueOrAsk(ctx context.Context) (float64, error) {
 // inputPrompt generates the prompt string displayed to the user
 // when requesting input for this parameter.
 func (p *FloatParam) inputPrompt() string {
-	return fmt.Sprintf("%s [%s]: ", p.configParam.Description, p.configParam.Name)
+	return fmt.Sprintf("%s [%s]: ", p.Description, p.Name)
 }
 
 // askValue prompts the user for a float input using the widget system.
@@ -58,7 +58,7 @@ func (p *FloatParam) inputPrompt() string {
 func (p *FloatParam) askValue(ctx context.Context) (float64, error) {
 	return widget.FloatInput(ctx,
 		p.inputPrompt(),
-		p.configParam.Example,
+		p.Example,
 	)
 }
 
@@ -71,6 +71,6 @@ func (p *FloatParam) AskValue(ctx context.Context) (float64, error) {
 	if err != nil {
 		return 0, err
 	}
-	viper.Set(p.configParam.Name, value)
+	viper.Set(p.Name, value)
 	return value, nil
 }

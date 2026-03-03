@@ -31,12 +31,12 @@ func exportLogic(ctx context.Context, events export.EventHandler) error {
 var testParam = configparam.Duration("timeout", "request timeout").
 	WithShortName("t").
 	WithEnvVarName("TIMEOUT").
-	WithDefaultValue(30*time.Second)
+	WithDefaultValue(30 * time.Second)
 
 func main() {
 	cli.Configuration.ShortName = "test"
 	cli.Configuration.ObservedSystem = "test system"
 	export.AddConfigParams(testParam)
 	export.SetCommand(exportLogic)
-        cli.Execute()
+	cli.Execute()
 }

@@ -44,7 +44,7 @@ func (p *DurationParam) Value() time.Duration {
 // otherwise it prompts the user for input interactively.
 // Returns the duration value and any error that occurred during input.
 func (p *DurationParam) ValueOrAsk(ctx context.Context) (time.Duration, error) {
-	if p.configParam.IsSet() {
+	if p.IsSet() {
 		return p.Value(), nil
 	}
 	return p.AskValue(ctx)
@@ -53,7 +53,7 @@ func (p *DurationParam) ValueOrAsk(ctx context.Context) (time.Duration, error) {
 // inputPrompt generates the prompt string displayed to the user
 // when requesting input for this parameter.
 func (p *DurationParam) inputPrompt() string {
-	return fmt.Sprintf("%s [%s]: ", p.configParam.Description, p.configParam.Name)
+	return fmt.Sprintf("%s [%s]: ", p.Description, p.Name)
 }
 
 // askValue prompts the user for an duration input using the widget system.
@@ -61,7 +61,7 @@ func (p *DurationParam) inputPrompt() string {
 func (p *DurationParam) askValue(ctx context.Context) (time.Duration, error) {
 	return widget.DurationInput(ctx,
 		p.inputPrompt(),
-		p.configParam.Example,
+		p.Example,
 	)
 }
 
@@ -74,6 +74,6 @@ func (p *DurationParam) AskValue(ctx context.Context) (time.Duration, error) {
 	if err != nil {
 		return 0, err
 	}
-	viper.Set(p.configParam.Name, value)
+	viper.Set(p.Name, value)
 	return value, nil
 }
