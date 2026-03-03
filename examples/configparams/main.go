@@ -12,10 +12,10 @@ import (
 )
 
 var subcommand = &cli.BasicSubCommand{
-	Name:             "widget",
-	Short:            "widget testing",
-	Long:             "demo widget capabilities",
-	ConfigParams:     []configparam.ConfigParam{
+	Name:  "widget",
+	Short: "widget testing",
+	Long:  "demo widget capabilities",
+	ConfigParams: []configparam.ConfigParam{
 		selectorParam,
 	},
 	Run: widgetTesting,

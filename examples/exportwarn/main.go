@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"errors"
@@ -18,10 +17,10 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 	events.Warn(errors.New("generating test resource"))
 
 	res := &unstructured.Unstructured{
-	  Object: map[string]interface{}{
-	      "user": "test-user-with-warning",
-	      "password": "secret",
-	  },
+		Object: map[string]interface{}{
+			"user":     "test-user-with-warning",
+			"password": "secret",
+		},
 	}
 	events.Resource(res)
 

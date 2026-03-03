@@ -11,11 +11,11 @@ import (
 )
 
 var subcommand = &cli.BasicSubCommand{
-	Name:             "widget",
-	Short:            "widget testing",
-	Long:             "demo widget capabilities",
-	ConfigParams:     []configparam.ConfigParam{},
-	Run: widgetTesting,
+	Name:         "widget",
+	Short:        "widget testing",
+	Long:         "demo widget capabilities",
+	ConfigParams: []configparam.ConfigParam{},
+	Run:          widgetTesting,
 }
 
 func widgetTesting(ctx context.Context) error {
@@ -27,7 +27,7 @@ func widgetTesting(ctx context.Context) error {
 	}
 	slog.Debug("Text entered", "value", text)
 
-        sensitive, err := widget.TextInput(ctx, "Testing sensitive TextInput", "", true)
+	sensitive, err := widget.TextInput(ctx, "Testing sensitive TextInput", "", true)
 	if err != nil {
 		return err
 	}

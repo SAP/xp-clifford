@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"log/slog"

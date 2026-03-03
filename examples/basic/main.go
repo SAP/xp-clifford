@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"github.com/SAP/xp-clifford/cli"
 	_ "github.com/SAP/xp-clifford/cli/export"

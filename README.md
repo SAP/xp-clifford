@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 [![Go Reference](https://pkg.go.dev/badge/github.com/SAP/xp-clifford.svg)](https://pkg.go.dev/github.com/SAP/xp-clifford)
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/xp-clifford)](https://api.reuse.software/info/github.com/SAP/xp-clifford)
 
@@ -7,7 +9,12 @@
 
 `xp-clifford` (Crossplane CLI Framework for Resource Data Extraction) is a Go module that facilitates the development of CLI tools for exporting definitions of external resources in the format of specific Crossplane provider managed resource definitions.
 
-The resource definitions can then be imported into Crossplane using the [standard import procedure](https://docs.crossplane.io/v2.1/guides/import-existing-resources/). It is recommended to check the generated definitions for comments, before doing the import. See also [Exporting commented out resources](#commented-export).
+The resource definitions can then be imported into Crossplane using
+the [standard import
+procedure](https://docs.crossplane.io/v2.1/guides/import-existing-resources/). It
+is recommended to check the generated definitions for comments, before
+doing the import. See also [Exporting commented out
+resources](#commented-export).
 
 ## Requirements
 
@@ -23,28 +30,42 @@ go get github.com/SAP/xp-clifford
 
 ## Support, Feedback, Contributing
 
-This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](<https://github.com/SAP/xp-clifford/issues>). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
-
+This project is open to feature requests/suggestions, bug reports
+etc. via [GitHub
+issues](<https://github.com/SAP/xp-clifford/issues>). Contribution and
+feedback are encouraged and always welcome. For more information about
+how to contribute, the project structure, as well as additional
+contribution information, see our [Contribution
+Guidelines](CONTRIBUTING.md).
 
 ## Security / Disclosure
 
-If you find any bug that may be a security problem, please follow our instructions at [in our security policy](https://github.com/SAP/xp-clifford/security/policy) on how to report it. Please do not create GitHub issues for security-related doubts or problems.
-
+If you find any bug that may be a security problem, please follow our
+instructions at [in our security
+policy](https://github.com/SAP/xp-clifford/security/policy) on how to
+report it. Please do not create GitHub issues for security-related
+doubts or problems.
 
 ## Code of Conduct
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone. By participating in this project, you agree to abide by its [Code of Conduct](<https://github.com/SAP/.github/blob/main/CODE_OF_CONDUCT.md>) at all times.
-
+We as members, contributors, and leaders pledge to make participation
+in our community a harassment-free experience for everyone. By
+participating in this project, you agree to abide by its [Code of
+Conduct](<https://github.com/SAP/.github/blob/main/CODE_OF_CONDUCT.md>)
+at all times.
 
 ## Licensing
 
-Copyright 2026 SAP SE or an SAP affiliate company and xp-clifford contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](<https://api.reuse.software/info/github.com/SAP/xp-clifford>).
-
+Copyright 2026 SAP SE or an SAP affiliate company and xp-clifford
+contributors. Please see our [LICENSE](LICENSE) for copyright and
+license information. Detailed information including third-party
+components and their licensing/copyright information is available [via
+the REUSE
+tool](<https://api.reuse.software/info/github.com/SAP/xp-clifford>).
 
 ## Examples
 
 These examples demonstrate the basic features of `xp-clifford` and build progressively on one another.
-
 
 ### The simplest CLI tool
 
@@ -76,8 +97,8 @@ import (
 
 Two packages must be imported:
 
--   `github.com/SAP/xp-clifford/cli`
--   `github.com/SAP/xp-clifford/cli/export`
+- `github.com/SAP/xp-clifford/cli`
+- `github.com/SAP/xp-clifford/cli/export`
 
 The `cli/export` package is imported for side effects only.
 
@@ -95,8 +116,8 @@ The `Configuration` variable from the `cli` package is used to set specific para
 
 These fields have the following meanings:
 
--   **ShortName:** The abbreviated name of the observed system without spaces, such as "cf" for the CloudFoundry provider
--   **ObservedSystem:** The full name of the external system, which may contain spaces, such as "Cloud Foundry"
+- **ShortName:** The abbreviated name of the observed system without spaces, such as "cf" for the CloudFoundry provider
+- **ObservedSystem:** The full name of the external system, which may contain spaces, such as "Cloud Foundry"
 
 At the end of the `main` function, we invoke the `Execute` function from the `cli` package to start the CLI.
 
@@ -106,7 +127,7 @@ When we run this basic example, it generates the following output:
 go run ./examples/basic/main.go
 ```
 
-```
+```text
 test system exporting tool is a CLI tool for exporting existing resources as Crossplane managed resources
 
 Usage:
@@ -131,11 +152,11 @@ If you try running the CLI tool with the export subcommand, you get an **error**
 go run ./examples/basic/main.go export
 ```
 
-    ERRO export subcommand is not set
-
+``` text
+ERRO export subcommand is not set
+```
 
 ### Exporting
-
 
 #### Basic export subcommand
 
@@ -151,9 +172,9 @@ The `ctx` parameter can be used to handle interruptions, such as when the user p
 
 The `events` parameter from the `export` package provides three methods for communicating progress to the CLI framework:
 
--   **Warn:** Indicates a recoverable error that does not terminate the export operation.
--   **Resource:** Indicates a processed managed resource to be printed or stored by the export operation.
--   **Stop:** Indicates that exporting has finished. No more `Warn` or `Resource` calls should be made after `Stop`.
+- **Warn:** Indicates a recoverable error that does not terminate the export operation.
+- **Resource:** Indicates a processed managed resource to be printed or stored by the export operation.
+- **Stop:** Indicates that exporting has finished. No more `Warn` or `Resource` calls should be made after `Stop`.
 
 A fatal error can be indicated by returning a non-nil error value.
 
@@ -208,8 +229,9 @@ To invoke the `export` subcommand:
 go run ./examples/export/main.go export
 ```
 
-    INFO export command invoked
-
+``` text
+INFO export command invoked
+```
 
 #### Exporting a resource
 
@@ -287,13 +309,15 @@ Running this example produces the following output:
 go run ./examples/exportsingle/main.go export
 ```
 
-    INFO export command invoked
+``` text
+INFO export command invoked
 
 
-        ---
-        password: secret
-        user: test-user
-        ...
+    ---
+    password: secret
+    user: test-user
+    ...
+```
 
 The exported resource is printed to the console. You can redirect the output to a file using the `-o` flag:
 
@@ -301,8 +325,10 @@ The exported resource is printed to the console. You can redirect the output to 
 go run ./examples/exportsingle/main.go export -o output.yaml
 ```
 
-    INFO export command invoked
-    INFO Writing output to file output=output.yaml
+``` text
+INFO export command invoked
+INFO Writing output to file output=output.yaml
+```
 
 The `output.yaml` file contains the exported resource object:
 
@@ -310,11 +336,12 @@ The `output.yaml` file contains the exported resource object:
 cat output.yaml
 ```
 
-    ---
-    password: secret
-    user: test-user
-    ...
-
+``` text
+---
+password: secret
+user: test-user
+...
+```
 
 #### Displaying warnings
 
@@ -398,14 +425,16 @@ Running this example displays the warning message in the logs:
 go run ./examples/exportwarn/main.go export
 ```
 
-    INFO export command invoked
-    WARN generating test resource
+``` text
+INFO export command invoked
+WARN generating test resource
 
 
-        ---
-        password: secret
-        user: test-user-with-warning
-        ...
+    ---
+    password: secret
+    user: test-user-with-warning
+    ...
+```
 
 When redirecting the output to a file, the warning appears on screen but not in the file:
 
@@ -413,19 +442,22 @@ When redirecting the output to a file, the warning appears on screen but not in 
 go run ./examples/exportwarn/main.go export -o output.yaml
 ```
 
-    INFO export command invoked
-    WARN generating test resource
-    INFO Writing output to file output=output.yaml
+``` text
+INFO export command invoked
+WARN generating test resource
+INFO Writing output to file output=output.yaml
+```
 
 ```sh
 cat output.yaml
 ```
 
-    ---
-    password: secret
-    user: test-user-with-warning
-    ...
-
+``` text
+---
+password: secret
+user: test-user-with-warning
+...
+```
 
 <a id="commented-export"></a>
 
@@ -455,8 +487,8 @@ func NewResourceWithComment(res resource.Object) *yaml.ResourceWithComment
 
 The `*yaml.ResourceWithComment` type wraps `res` and implements the `yaml.CommentedYAML` interface. It also provides helper methods:
 
--   **SetComment:** sets the comment string
--   **AddComment:** appends to the comment string
+- **SetComment:** sets the comment string
+- **AddComment:** appends to the comment string
 
 The following example demonstrates the commenting feature:
 
@@ -528,7 +560,7 @@ Running this example displays the commented resource with its comment message:
 go run ./examples/exportcomment/main.go export
 ```
 
-```
+```text
 INFO export command invoked
 
 
@@ -544,14 +576,17 @@ INFO export command invoked
 
 This works equally well when redirecting output to a file using the `-o` flag.
 
-
 <a id="erratt-example"></a>
 
 ### Errors with attributes
 
 The `erratt` package implements a new `error` type designed for efficient use with the `Warn` method of `EventHandler`.
 
-The `erratt.Error` type implements the standard Go `error` interface. Additionally, it can be extended with `slog` package compatible key-value pairs used for structured logging. The `erratt.Error` type also supports wrapping Go `error` values. When an `erratt.Error` is wrapped, its attributes are preserved.
+The `erratt.Error` type implements the standard Go `error`
+interface. Additionally, it can be extended with `slog` package
+compatible key-value pairs used for structured logging. The
+`erratt.Error` type also supports wrapping Go `error` values. When an
+`erratt.Error` is wrapped, its attributes are preserved.
 
 You can create a simple `erratt.Error` using the `erratt.New` function:
 
@@ -666,20 +701,26 @@ Running this code produces the following output:
 go run ./examples/erratt/main.go export
 ```
 
-    INFO export command invoked
-    ERRO connect failed: authentication failure url=https://example.com username=test-user password=test-password
+``` text
+INFO export command invoked
+ERRO connect failed: authentication failure url=https://example.com username=test-user password=test-password
+```
 
 The error message appears on the console with all attributes displayed.
 
 The `EventHandler.Warn` method handles `erratt.Error` values in the same manner.
 
-
 ### Widgets
 
 `xp-clifford` provides several CLI widgets to facilitate the interaction with the user.
 
-Note that for the widgets to run, the CLI tool must be executed in an interactive terminal. This is not always the case by default, when running or debugging an application within an IDE (like GoLand) using a Run Configuration. In such cases, make sure to configure the Run Configuration appropriately. Specifically for [GoLand](https://www.jetbrains.com/help/go/run-debug-configuration.html) it can be done by selecting `Emulate terminal in output console`.
-
+Note that for the widgets to run, the CLI tool must be executed in an
+interactive terminal. This is not always the case by default, when
+running or debugging an application within an IDE (like GoLand) using
+a Run Configuration. In such cases, make sure to configure the Run
+Configuration appropriately. Specifically for
+[GoLand](https://www.jetbrains.com/help/go/run-debug-configuration.html)
+it can be done by selecting `Emulate terminal in output console`.
 
 #### TextInput widget
 
@@ -691,10 +732,10 @@ func TextInput(ctx context.Context, title, placeholder string, sensitive bool) (
 
 Parameters:
 
--   **ctx:** Go context for handling Ctrl-C interrupts or timeouts
--   **title:** The prompt question displayed to the user
--   **placeholder:** Placeholder text shown when the input is empty
--   **sensitive:** When true, masks typed characters (useful for passwords)
+- **ctx:** Go context for handling Ctrl-C interrupts or timeouts
+- **title:** The prompt question displayed to the user
+- **placeholder:** Placeholder text shown when the input is empty
+- **sensitive:** When true, masks typed characters (useful for passwords)
 
 The following example demonstrates an `exportLogic` function that prompts for a username and password:
 
@@ -770,7 +811,6 @@ See the example in action:
 
 ![img](examples/textinput/example.gif "TextInput example")
 
-
 #### MultiInput widget
 
 The MultiInput widget creates a multi-selection interface that allows users to select multiple items from a predefined list of options:
@@ -781,9 +821,9 @@ func MultiInput(ctx context.Context, title string, options []string) ([]string, 
 
 Parameters:
 
--   **ctx:** Go context for handling Ctrl-C interrupts or timeouts
--   **title:** The selection prompt displayed to the user
--   **options:** The list of selectable items
+- **ctx:** Go context for handling Ctrl-C interrupts or timeouts
+- **title:** The selection prompt displayed to the user
+- **options:** The list of selectable items
 
 The following example demonstrates an `exportLogic` function that uses the `MultiInput` widget:
 
@@ -859,36 +899,33 @@ Running this example produces the following output:
 
 ![img](examples/multiinput/example.gif "MultiInput example")
 
-
 ### Configuration parameters
 
 CLI tools built using `xp-clifford` can be configured through several methods:
 
--   Command-line flags
--   Environment variables
--   Configuration files
+- Command-line flags
+- Environment variables
+- Configuration files
 
 `xp-clifford` provides types and functions to facilitate configuration and management of these parameters. Configuration parameter handling is also integrated with the widget capabilities of `xp-clifford`.
 
 Currently, the following configuration parameter types are supported:
 
--   `bool`
--   `string`
--   `[]string`
+- `bool`
+- `string`
+- `[]string`
 
 All configuration parameters managed by `xp-clifford` implement the `configparam.ConfigParam` interface.
-
 
 #### Global configuration parameters
 
 Any CLI tool built using `xp-clifford` includes the following global flags:
 
--   **`-c` or `--config`:** Configuration file for setting additional parameters (string)
--   **`-v` or `--verbose`:** Enable verbose logging (bool)
--   **`-h` or `--help`:** Print help message (bool)
+- **`-c` or `--config`:** Configuration file for setting additional parameters (string)
+- **`-v` or `--verbose`:** Enable verbose logging (bool)
+- **`-h` or `--help`:** Print help message (bool)
 
 The verbose logging is explained in [Verbose logging](#verbose). The configuration file handling is elaborated in the [Configuration file](#config-file).
-
 
 <a id="verbose"></a>
 
@@ -945,22 +982,22 @@ With the `-v` flag, the debug-level message appears:
 go run ./examples/verbose/main.go export -v
 ```
 
-    DEBU export command invoked
-
+``` text
+DEBU export command invoked
+```
 
 #### Configuration parameters of the export subcommand
 
 The `export` subcommand includes the following default configuration parameters:
 
--   **`-k` or `--kind`:** Resource kinds to export ([]string)
--   **`-o` or `--output`:** Redirect output to a file (string)
+- **`-k` or `--kind`:** Resource kinds to export ([]string)
+- **`-o` or `--output`:** Redirect output to a file (string)
 
 You can extend the `export` subcommand with additional configuration parameters using the `export.AddConfigParams` function:
 
 ```go
 func AddConfigParams(param ...configparam.ConfigParam)
 ```
-
 
 #### Bool configuration parameter
 
@@ -972,10 +1009,10 @@ func Bool(name, description string) *BoolParam
 
 The two mandatory arguments are *name* and *description*. Fine-tune the parameter with these methods:
 
--   **`WithShortName`:** Single-character short command-line flag
--   **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
--   **`WithEnvVarName`:** Environment variable name for the parameter
--   **`WithDefaultValue`:** Default value of the parameter
+- **`WithShortName`:** Single-character short command-line flag
+- **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
+- **`WithEnvVarName`:** Environment variable name for the parameter
+- **`WithDefaultValue`:** Default value of the parameter
 
 Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
 
@@ -1032,7 +1069,7 @@ The new parameter appears in the help output:
 go run ./examples/boolparam/main.go export --help
 ```
 
-```
+```text
 Export test system resources and transform them into managed resources that the Crossplane provider can consume
 
 Usage:
@@ -1055,7 +1092,9 @@ By default, test is `false`:
 go run ./examples/boolparam/main.go export
 ```
 
-    INFO export command invoked test-value=false
+``` text
+INFO export command invoked test-value=false
+```
 
 Enable it using the `--test` flag:
 
@@ -1063,7 +1102,9 @@ Enable it using the `--test` flag:
 go run ./examples/boolparam/main.go export --test
 ```
 
-    INFO export command invoked test-value=true
+``` text
+INFO export command invoked test-value=true
+```
 
 Or using the shorthand `-t` flag:
 
@@ -1071,7 +1112,9 @@ Or using the shorthand `-t` flag:
 go run ./examples/boolparam/main.go export -t
 ```
 
-    INFO export command invoked test-value=true
+``` text
+INFO export command invoked test-value=true
+```
 
 Or using the `CLIFFORD_TEST` environment variable:
 
@@ -1079,8 +1122,9 @@ Or using the `CLIFFORD_TEST` environment variable:
 CLIFFORD_TEST=1 go run ./examples/boolparam/main.go export
 ```
 
-    INFO export command invoked test-value=true
-
+``` text
+INFO export command invoked test-value=true
+```
 
 #### String configuration parameter
 
@@ -1092,10 +1136,10 @@ func String(name, description string) *StringParam
 
 The two mandatory arguments are *name* and *description*. Fine-tune the parameter with these methods:
 
--   **`WithShortName`:** Single-character short command-line flag
--   **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
--   **`WithEnvVarName`:** Environment variable name for the parameter
--   **`WithDefaultValue`:** Default value of the parameter
+- **`WithShortName`:** Single-character short command-line flag
+- **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
+- **`WithEnvVarName`:** Environment variable name for the parameter
+- **`WithDefaultValue`:** Default value of the parameter
 
 Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
 
@@ -1162,7 +1206,7 @@ The new parameter appears in the help output:
 go run ./examples/stringparam/main.go export --help
 ```
 
-```
+```text
 Export test system resources and transform them into managed resources that the Crossplane provider can consume
 
 Usage:
@@ -1185,8 +1229,10 @@ Set the value using the `--username` flag:
 go run ./examples/stringparam/main.go export --username anonymous
 ```
 
-    INFO export command invoked username=anonymous is-set=true
-    INFO value set by user value=anonymous
+``` text
+INFO export command invoked username=anonymous is-set=true
+INFO value set by user value=anonymous
+```
 
 Or using the shorthand `-u` flag:
 
@@ -1194,8 +1240,10 @@ Or using the shorthand `-u` flag:
 go run ./examples/stringparam/main.go export -u anonymous
 ```
 
-    INFO export command invoked username=anonymous is-set=true
-    INFO value set by user value=anonymous
+``` text
+INFO export command invoked username=anonymous is-set=true
+INFO value set by user value=anonymous
+```
 
 Or using the `USERNAME` environment variable:
 
@@ -1203,13 +1251,14 @@ Or using the `USERNAME` environment variable:
 USERNAME=anonymous go run ./examples/stringparam/main.go export
 ```
 
-    INFO export command invoked username=anonymous is-set=true
-    INFO value set by user value=anonymous
+``` text
+INFO export command invoked username=anonymous is-set=true
+INFO value set by user value=anonymous
+```
 
 When no value is provided, the `TextInput` widget prompts for it interactively:
 
 ![img](examples/stringparam/example.gif "Asking a string config parameter value")
-
 
 #### String slice configuration parameter
 
@@ -1223,17 +1272,16 @@ func StringSlice(name, description string) *StringSliceParam
 
 The two mandatory arguments are *name* and *description*. Fine-tune the parameter with these methods:
 
--   **`WithShortName`:** Single-character short command-line flag
--   **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
--   **`WithEnvVarName`:** Environment variable name for the parameter
--   **`WithDefaultValue`:** Default value of the parameter
--   **`WithPossibleValues`:** Limit the selection options offered during `ValueOrAsk`
--   **`WithPossibleValuesFn`:** Function that provides the selection options offered during `ValueOrAsk`
+- **`WithShortName`:** Single-character short command-line flag
+- **`WithFlagName`:** Long format of the command-line flag (defaults to *name*)
+- **`WithEnvVarName`:** Environment variable name for the parameter
+- **`WithDefaultValue`:** Default value of the parameter
+- **`WithPossibleValues`:** Limit the selection options offered during `ValueOrAsk`
+- **`WithPossibleValuesFn`:** Function that provides the selection options offered during `ValueOrAsk`
 
 Use the `Value()` method to retrieve the parameter value. The `IsSet()` method returns true if the user has explicitly set the value.
 
 The `ValueOrAsk` method returns the value if set. Otherwise, it prompts for the value interactively using the `MultiInput` widget. Interactive prompting requires setting possible values with `WithPossibleValues` or `WithPossibleValuesFn`.
-
 
 ##### Without possible values
 
@@ -1289,7 +1337,7 @@ The new parameter appears in the help output:
 go run ./examples/stringslice/main.go export --help
 ```
 
-```
+```text
 Export test system resources and transform them into managed resources that the Crossplane provider can consume
 
 Usage:
@@ -1312,7 +1360,9 @@ Without setting the value:
 go run ./examples/stringslice/main.go export
 ```
 
-    INFO export command invoked protocols=[] num-of-protos=0 is-set=false
+``` text
+INFO export command invoked protocols=[] num-of-protos=0 is-set=false
+```
 
 Set the value using the `--protocol` flag:
 
@@ -1320,7 +1370,9 @@ Set the value using the `--protocol` flag:
 go run ./examples/stringslice/main.go export --protocol HTTP --protocol HTTPS --protocol SSH
 ```
 
-    INFO export command invoked protocols="[HTTP HTTPS SSH]" num-of-protos=3 is-set=true
+``` text
+INFO export command invoked protocols="[HTTP HTTPS SSH]" num-of-protos=3 is-set=true
+```
 
 Set the value using the `-p` flag:
 
@@ -1328,7 +1380,9 @@ Set the value using the `-p` flag:
 go run ./examples/stringslice/main.go export -p HTTP -p SFTP -p FTP
 ```
 
-    INFO export command invoked protocols="[HTTP SFTP FTP]" num-of-protos=3 is-set=true
+``` text
+INFO export command invoked protocols="[HTTP SFTP FTP]" num-of-protos=3 is-set=true
+```
 
 Set the value using the `PROTOCOLS` environment variable:
 
@@ -1336,8 +1390,9 @@ Set the value using the `PROTOCOLS` environment variable:
 PROTOCOLS="HTTP HTTPS FTP" go run ./examples/stringslice/main.go export
 ```
 
-    INFO export command invoked protocols="[HTTP HTTPS FTP]" num-of-protos=3 is-set=true
-
+``` text
+INFO export command invoked protocols="[HTTP HTTPS FTP]" num-of-protos=3 is-set=true
+```
 
 ##### With static possible values
 
@@ -1404,27 +1459,32 @@ You can set values with flags or environment variables as before:
 go run ./examples/stringslicestatic/main.go export --protocol HTTP --protocol HTTPS --protocol SSH
 ```
 
-    INFO export command invoked protocols="[HTTP HTTPS SSH]" num-of-protos=3 is-set=true
-    INFO data acquired protocols="[HTTP HTTPS SSH]"
+``` text
+INFO export command invoked protocols="[HTTP HTTPS SSH]" num-of-protos=3 is-set=true
+INFO data acquired protocols="[HTTP HTTPS SSH]"
+```
 
 ```sh
 go run ./examples/stringslicestatic/main.go export -p HTTP -p SFTP -p FTP
 ```
 
-    INFO export command invoked protocols="[HTTP SFTP FTP]" num-of-protos=3 is-set=true
-    INFO data acquired protocols="[HTTP SFTP FTP]"
+``` text
+INFO export command invoked protocols="[HTTP SFTP FTP]" num-of-protos=3 is-set=true
+INFO data acquired protocols="[HTTP SFTP FTP]"
+```
 
 ```sh
 PROTOCOLS="HTTP HTTPS FTP" go run ./examples/stringslicestatic/main.go export
 ```
 
-    INFO export command invoked protocols="[HTTP HTTPS FTP]" num-of-protos=3 is-set=true
-    INFO data acquired protocols="[HTTP HTTPS FTP]"
+``` text
+INFO export command invoked protocols="[HTTP HTTPS FTP]" num-of-protos=3 is-set=true
+INFO data acquired protocols="[HTTP HTTPS FTP]"
+```
 
 When you omit the parameter values, the CLI tool prompts for them interactively:
 
 ![img](examples/stringslicestatic/example.gif "Prompting for StringSlice value")
-
 
 ##### With dynamic possible values
 
@@ -1525,7 +1585,7 @@ Both parameters appear in the help output:
 go run ./examples/stringslicedynamic/main.go export --help
 ```
 
-```
+```text
 Export test system resources and transform them into managed resources that the Crossplane provider can consume
 
 Usage:
@@ -1549,8 +1609,10 @@ Set the values using flags as usual:
 go run ./examples/stringslicedynamic/main.go export -s --protocol HTTPS --protocol SFTP
 ```
 
-    INFO export command invoked secure=true secure-is-set=true protocols="[HTTPS SFTP]" num-of-protos=2 protocols-is-set=true
-    INFO data acquired protocols="[HTTPS SFTP]"
+``` text
+INFO export command invoked secure=true secure-is-set=true protocols="[HTTPS SFTP]" num-of-protos=2 protocols-is-set=true
+INFO data acquired protocols="[HTTPS SFTP]"
+```
 
 When the *protocol* configuration parameter is not set, the CLI prompts for its value interactively. The available options depend on the value of *secure*.
 
@@ -1561,7 +1623,6 @@ If *secure* is not set:
 If *secure* is set:
 
 ![img](examples/stringslicedynamic/example2.gif "Prompting for StringSlice dynamically - secure is on")
-
 
 #### Subcommands
 
@@ -1645,7 +1706,7 @@ The `login` subcommand appears when we run the CLI application with the `--help`
 go run ./examples/loginsubcommand/main.go --help
 ```
 
-```
+```text
 test system exporting tool is a CLI tool for exporting existing resources as Crossplane managed resources
 
 Usage:
@@ -1671,7 +1732,7 @@ The `--help` flag also works for the new `login` subcommand:
 go run ./examples/loginsubcommand/main.go login --help
 ```
 
-```
+```text
 A subcommand demonstrating xp-clifford capabilities
 
 Usage:
@@ -1691,8 +1752,9 @@ We can also run the `login` subcommand:
 go run ./examples/loginsubcommand/main.go login
 ```
 
-    INFO login invoked
-
+``` text
+INFO login invoked
+```
 
 ##### Subcommand with configuration parameters
 
@@ -1778,7 +1840,7 @@ The `--help` flag for the `login` subcommand now shows the `-t` / `--test` param
 go run ./examples/loginsubcommandparam/main.go login --help
 ```
 
-```
+```text
 A subcommand demonstrating xp-clifford capabilities
 
 Usage:
@@ -1799,7 +1861,9 @@ Let's invoke the `login` command:
 go run ./examples/loginsubcommandparam/main.go login
 ```
 
-    INFO login invoked test=false
+``` text
+INFO login invoked test=false
+```
 
 Let's see the configuration parameter in action:
 
@@ -1807,8 +1871,9 @@ Let's see the configuration parameter in action:
 go run ./examples/loginsubcommandparam/main.go login -t
 ```
 
-    INFO login invoked test=true
-
+``` text
+INFO login invoked test=true
+```
 
 <a id="config-file"></a>
 
@@ -1820,8 +1885,8 @@ You can specify the configuration file path using the `--config` / `-c` global f
 
 If you don't specify a configuration file, the CLI looks for one in these locations, in order:
 
-1.  `$XDG_CONFIG_HOME/<config_file_name>`
-2.  `$HOME/<config_file_name>`
+1. `$XDG_CONFIG_HOME/<config_file_name>`
+2. `$HOME/<config_file_name>`
 
 The `config_file_name` is `export-cli-config-<shortname>`, where `shortname` is the value of `cli.Configuration.ShortName`.
 
@@ -1879,7 +1944,9 @@ Flag-based configuration works as expected:
 go run ./examples/configfile/main.go export -b --protocol HTTPS --protocol SFTP --username anonymous
 ```
 
-    INFO export command invoked protocols="[HTTPS SFTP]" username=anonymous boolparam=true
+```text
+INFO export command invoked protocols="[HTTPS SFTP]" username=anonymous boolparam=true
+```
 
 Without CLI flags:
 
@@ -1887,7 +1954,9 @@ Without CLI flags:
 go run ./examples/configfile/main.go export
 ```
 
-    INFO export command invoked protocols=[] username="" boolparam=false
+```text
+INFO export command invoked protocols=[] username="" boolparam=false
+```
 
 Now let's create a configuration file:
 
@@ -1905,7 +1974,9 @@ The CLI reads configuration parameter values from this file:
 go run ./examples/configfile/main.go export --config ./examples/configfile/config
 ```
 
-    INFO export command invoked protocols="[HTTP FTP]" username=config-user boolparam=true
+``` text
+INFO export command invoked protocols="[HTTP FTP]" username=config-user boolparam=true
+```
 
 Environment variables override values from the configuration file:
 
@@ -1913,7 +1984,9 @@ Environment variables override values from the configuration file:
 PROTOCOLS="FTP" go run ./examples/configfile/main.go export --config ./examples/configfile/config
 ```
 
-    INFO export command invoked protocols=[FTP] username=config-user boolparam=true
+``` text
+INFO export command invoked protocols=[FTP] username=config-user boolparam=true
+```
 
 CLI flags take the highest precedence and override everything else:
 
@@ -1921,8 +1994,9 @@ CLI flags take the highest precedence and override everything else:
 PROTOCOLS="FTP" go run ./examples/configfile/main.go export --config ./examples/configfile/config --protocol SSH -b=false
 ```
 
-    INFO export command invoked protocols=[SSH] username=config-user boolparam=false
-
+``` text
+INFO export command invoked protocols=[SSH] username=config-user boolparam=false
+```
 
 ### Parsing and sanitizing
 
@@ -1940,17 +2014,15 @@ func ParseAndSanitize(input string, rule Rule) []string
 
 The `ParseAndSanitize` function takes an *input* string and a *rule*, then transforms the *input* to conform to the *rule*. Since multiple valid sanitized solutions may exist, the function returns all of them.
 
-
 #### Sanitizer rules
 
 The following rules are available for sanitization.
-
 
 ##### RFC1035Subdomain
 
 The `RFC1035Subdomain` rule conforms to:
 
-```
+```text
 <subdomain> ::= <label> | <subdomain> "." <label>
 ```
 
@@ -1958,9 +2030,9 @@ A *subdomain* is either a single *label* or multiple *labels* separated by dots 
 
 A *label* is a string that:
 
--   starts with a letter (lowercase or uppercase),
--   ends with a letter (lowercase or uppercase) or a digit,
--   contains only letters, digits, and `-` characters.
+- starts with a letter (lowercase or uppercase),
+- ends with a letter (lowercase or uppercase) or a digit,
+- contains only letters, digits, and `-` characters.
 
 A *label* cannot exceed 63 characters. A *subdomain* cannot exceed 253 characters.
 
@@ -1969,43 +2041,40 @@ During sanitization, invalid characters are replaced with `-` or `x`. The `@` sy
 Examples:
 
 | input                  | sanitized              |
-|---------------------- |---------------------- |
+|------------------------|------------------------|
 | `www.example.com`      | `www.example.com`      |
 | `Can you sanitize me?` | `Can-you-sanitize-mex` |
 | `99Luftballons`        | `x99Luftballons`       |
 | `admin@example.com`    | `admin-at-example.com` |
-
 
 ##### RFC1035LowerSubdomain
 
 The `RFC1035LowerSubdomain` rule is a variation of `RFC1035Subdomain` that requires lowercase letters only. Uppercase letters are converted to lowercase:
 
 | input                  | sanitized              |
-|---------------------- |---------------------- |
+|------------------------|------------------------|
 | `www.example.com`      | `www.example.com`      |
 | `Can you sanitize me?` | `can-you-sanitize-mex` |
 | `99Luftballons`        | `x99luftballons`       |
 | `admin@example.com`    | `admin-at-example.com` |
-
 
 ##### RFC1035SubdomainRelaxed
 
 The `RFC1035SubdomainRelaxed` rule is a variation of `RFC1035Subdomain` that allows *labels* to start with digits:
 
 | input                  | sanitized              |
-|---------------------- |---------------------- |
+|------------------------|------------------------|
 | `www.example.com`      | `www.example.com`      |
 | `Can you sanitize me?` | `Can-you-sanitize-mex` |
 | `99Luftballons`        | `99Luftballons`        |
 | `admin@example.com`    | `admin-at-example.com` |
-
 
 ##### RFC1035LowerSubdomainRelaxed
 
 The `RFC1035LowerSubdomainRelaxed` rule combines `RFC1035LowerSubdomain` and `RFC1035SubdomainRelaxed`. Uppercase characters are converted to lowercase, and *labels* may start with digits:
 
 | input                  | sanitized              |
-|---------------------- |---------------------- |
+|------------------------|------------------------|
 | `www.example.com`      | `www.example.com`      |
 | `Can you sanitize me?` | `can-you-sanitize-mex` |
 | `99Luftballons`        | `99luftballons`        |
@@ -2028,10 +2097,10 @@ The `mkcontainer` package provides a thread-safe multi-key container for storing
 
 Items are indexed based on which interfaces they implement:
 
-| Interface | Method | Uniqueness | Lookup Returns |
-|-----------|--------|------------|----------------|
-| `ItemWithGUID` | `GetGUID() string` | Must be unique | Single item |
-| `ItemWithName` | `GetName() string` | Not unique | Slice of items |
+| Interface      | Method             | Uniqueness     | Lookup Returns |
+|----------------|--------------------|----------------|----------------|
+| `ItemWithGUID` | `GetGUID() string` | Must be unique | Single item    |
+| `ItemWithName` | `GetName() string` | Not unique     | Slice of items |
 
 An item may implement both interfaces to be indexed by both GUID and name.
 

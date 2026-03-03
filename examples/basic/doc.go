@@ -4,7 +4,6 @@ using the export CLI framework.
 
 Try running the example with the following command
 
-   go run ./main.go
-
+	go run ./main.go
 */
 package main

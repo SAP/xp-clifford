@@ -48,11 +48,11 @@ func (c *exportSubCommand) GetName() string {
 }
 
 func (c *exportSubCommand) GetShort() string {
-	return fmt.Sprintf("Export %s resources", cli.Configuration.CLIConfiguration.ObservedSystem)
+	return fmt.Sprintf("Export %s resources", cli.Configuration.ObservedSystem)
 }
 
 func (c *exportSubCommand) GetLong() string {
-	return fmt.Sprintf("Export %s resources and transform them into managed resources that the Crossplane provider can consume", cli.Configuration.CLIConfiguration.ObservedSystem)
+	return fmt.Sprintf("Export %s resources and transform them into managed resources that the Crossplane provider can consume", cli.Configuration.ObservedSystem)
 }
 
 func (c *exportSubCommand) GetConfigParams() configparam.ParamList {

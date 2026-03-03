@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"log/slog"
@@ -38,5 +37,5 @@ func main() {
 	cli.Configuration.ObservedSystem = "test system"
 	export.AddConfigParams(testParam)
 	export.SetCommand(exportLogic)
-        cli.Execute()
+	cli.Execute()
 }

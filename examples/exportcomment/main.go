@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"context"
 	"log/slog"
@@ -16,10 +15,10 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 	slog.Info("export command invoked")
 
 	res := &unstructured.Unstructured{
-	  Object: map[string]interface{}{
-	      "user": "test-user-commented",
-	      "password": "secret",
-	  },
+		Object: map[string]interface{}{
+			"user":     "test-user-commented",
+			"password": "secret",
+		},
 	}
 
 	commentedResource := yaml.NewResourceWithComment(res)

@@ -58,20 +58,20 @@ func (p *StringParam) Value() string {
 // After successful selection the entered string is stored and the
 // parameter is considered set.
 func (p *StringParam) ValueOrAsk(ctx context.Context) (string, error) {
-	if p.configParam.IsSet() {
+	if p.IsSet() {
 		return p.Value(), nil
 	}
 	return p.AskValue(ctx)
 }
 
 func (p *StringParam) inputPrompt() string {
-	return fmt.Sprintf("%s [%s]: ", p.configParam.Description, p.configParam.Name)
+	return fmt.Sprintf("%s [%s]: ", p.Description, p.Name)
 }
 
 func (p *StringParam) askValue(ctx context.Context, sensitive bool) (string, error) {
 	return widget.TextInput(ctx,
 		p.inputPrompt(),
-		p.configParam.Example,
+		p.Example,
 		sensitive,
 	)
 }
@@ -81,6 +81,6 @@ func (p *StringParam) AskValue(ctx context.Context) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	viper.Set(p.configParam.Name, value)
+	viper.Set(p.Name, value)
 	return value, nil
 }
