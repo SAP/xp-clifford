@@ -3,6 +3,7 @@ package widget
 import (
 	"context"
 	"fmt"
+	"math"
 	"strconv"
 
 	"github.com/SAP/xp-clifford/erratt"
@@ -60,7 +61,13 @@ func (c intConverterType) FromType(i int) (string, error) {
 
 func (c intConverterType) ToType(s string) (int, error) {
 	i, err := strconv.ParseInt(s, 10, 64)
-	return int(i), err
+	if err != nil {
+		return 0, err
+	}
+	if i < int64(math.MinInt) || i > int64(math.MaxInt) {
+		return 0, fmt.Errorf("value %d out of range for int", i)
+	}
+	return int(i), nil
 }
 
 var IntConverter TypeConverter[int] = intConverterType{}
