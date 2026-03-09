@@ -811,6 +811,13 @@ See the example in action:
 
 ![img](examples/textinput/example.gif "TextInput example")
 
+#### IntInput, FloatInput, DurationInput widgets
+
+IntInput, FloatInput, DurationInput widgets work similarly to the
+[TextInput](#textinput-widget) widget. They only accept integer,
+float, and duration values respectively. These widgets don't support
+the `sensitive` parameter.
+
 #### MultiInput widget
 
 The MultiInput widget creates a multi-selection interface that allows users to select multiple items from a predefined list of options:
@@ -912,6 +919,8 @@ CLI tools built using `xp-clifford` can be configured through several methods:
 Currently, the following configuration parameter types are supported:
 
 - `bool`
+- `int`
+- `[]int`
 - `string`
 - `[]string`
 
@@ -1124,6 +1133,14 @@ CLIFFORD_TEST=1 go run ./examples/boolparam/main.go export
 
 ``` text
 INFO export command invoked test-value=true
+```
+
+#### Int configuration parameter
+
+Create a new *int* configuration parameter using the `configparam.Int` function:
+
+```go
+func Int(name, description string) *IntParam
 ```
 
 #### String configuration parameter

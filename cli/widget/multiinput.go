@@ -3,7 +3,9 @@ package widget
 import (
 	"context"
 	"fmt"
+	"strconv"
 
+	"github.com/SAP/xp-clifford/erratt"
 	"github.com/charmbracelet/huh"
 )
 
@@ -43,4 +45,48 @@ func MultiInput(ctx context.Context, title string, options []string) ([]string, 
 		return nil, err
 	}
 	return selected, nil
+}
+
+type TypeConverter[T any] interface {
+	FromType(T) (string, error)
+	ToType(string) (T, error)
+}
+
+type intConverterType struct{}
+
+func (c intConverterType) FromType(i int) (string, error) {
+	return strconv.Itoa(i), nil
+}
+
+func (c intConverterType) ToType(s string) (int, error) {
+	i, err := strconv.ParseInt(s, 10, strconv.IntSize)
+	if err != nil {
+		return 0, err
+	}
+	return int(i), nil
+}
+
+var IntConverter TypeConverter[int] = intConverterType{}
+
+func MultiInputOfType[T any](ctx context.Context, title string, options []T, converter TypeConverter[T]) ([]T, error) {
+	in := make([]string, len(options))
+	for i := range in {
+		var err error
+		in[i], err = converter.FromType(options[i])
+		if err != nil {
+			return nil, erratt.Errorf("error converting to string: %w", err).With("value", in[i])
+		}
+	}
+	outStrings, err := MultiInput(ctx, title, in)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]T, len(outStrings))
+	for i := range outStrings {
+		out[i], err = converter.ToType(outStrings[i])
+		if err != nil {
+			return nil, erratt.Errorf("error converting from string: %w", err).With("value", out[i])
+		}
+	}
+	return out, nil
 }

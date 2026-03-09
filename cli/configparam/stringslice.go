@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-type possibleValuesFnType func() ([]string, error)
+type stringSlicePossibleValuesFnType func() ([]string, error)
 
 // StringSliceParam type represents a configuration parameterkxo that
 // holds a []string value.
@@ -18,7 +18,7 @@ type StringSliceParam struct {
 	*configWithDefaultValue[StringSliceParam, []string]
 	sensitive        bool
 	possibleValues   []string
-	possibleValuesFn possibleValuesFnType
+	possibleValuesFn stringSlicePossibleValuesFnType
 }
 
 var _ ConfigParam = &StringSliceParam{}
