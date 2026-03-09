@@ -45,14 +45,15 @@
           go-config = {
             enable = true;
             lsp.enable = false;
-            version = "1.24.10";
+            version = "1.25.8";
           };
         in {
           default = {
-            packages = [
-              pkgs.pre-commit
-              pkgs.golangci-lint
-              pkgs.markdownlint-cli
+            packages = with pkgs; [
+              pre-commit
+              golangci-lint
+              markdownlint-cli
+              vhs
             ];
             languages.go = go-config;
             git-hooks = {

@@ -920,6 +920,7 @@ Currently, the following configuration parameter types are supported:
 
 - `bool`
 - `int`
+- `[]int`
 - `string`
 - `[]string`
 
