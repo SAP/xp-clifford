@@ -1,1 +1,4 @@
 *~
+/.devenv/
+/.direnv/
+/.pre-commit-config.yaml
