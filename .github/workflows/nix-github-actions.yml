@@ -89,4 +89,4 @@ jobs:
           purge-last-accessed: P1DT12H
           # except any version with the key that is the same as the `primary-key`
           purge-primary-key: never
-      - run: nix develop --no-pure-eval -c pre-commit run --all-files
+      - run: nix develop .#ci --no-pure-eval -c pre-commit run --all-files

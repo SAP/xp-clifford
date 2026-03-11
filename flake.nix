@@ -42,13 +42,62 @@
         ...
       }: {
         devenv.shells = let
+          env = {
+            GOTOOLCHAIN = pkgs.lib.mkForce "go${config.devenv.shells.default.languages.go.version}";
+          };
+          git-hooks = {
+            hooks = {
+              action-validator.enable = true;
+              actionlint.enable = true;
+              alejandra.enable = true;
+              check-added-large-files.enable = true;
+              check-merge-conflicts.enable = true;
+              commitizen.enable = true;
+              deadnix.enable = true;
+              detect-private-keys.enable = true;
+              end-of-file-fixer.enable = true;
+              flake-checker.enable = true;
+              gofmt.enable = true;
+              golangci-lint.enable = true;
+              gotest.enable = true;
+              govet.enable = true;
+              markdownlint = {
+                enable = true;
+                settings.configuration = {
+                  MD010 = {
+                    code_blocks = false;
+                  };
+                  MD013 = {
+                    line_length = 256;
+                  };
+                  MD033 = {
+                    allowed_elements = [
+                      "a"
+                      "sup"
+                    ];
+                  };
+                };
+              };
+              reuse.enable = true;
+              ripsecrets.enable = true;
+              zizmor.enable = true;
+            };
+          };
           go-config = {
             enable = true;
             lsp.enable = false;
             version = "1.25.8";
           };
         in {
+          ci = {
+            inherit env git-hooks;
+            packages = with pkgs; [
+              pre-commit
+            ];
+            languages.go = go-config;
+          };
           default = {
+            inherit env git-hooks;
             packages = with pkgs; [
               pre-commit
               golangci-lint
@@ -56,47 +105,6 @@
               vhs
             ];
             languages.go = go-config;
-            git-hooks = {
-              hooks = {
-                action-validator.enable = true;
-                actionlint.enable = true;
-                alejandra.enable = true;
-                check-added-large-files.enable = true;
-                check-merge-conflicts.enable = true;
-                commitizen.enable = true;
-                deadnix.enable = true;
-                detect-private-keys.enable = true;
-                end-of-file-fixer.enable = true;
-                flake-checker.enable = true;
-                gofmt.enable = true;
-                golangci-lint.enable = true;
-                gotest.enable = true;
-                govet.enable = true;
-                markdownlint = {
-                  enable = true;
-                  settings.configuration = {
-                    MD010 = {
-                      code_blocks = false;
-                    };
-                    MD013 = {
-                      line_length = 256;
-                    };
-                    MD033 = {
-                      allowed_elements = [
-                        "a"
-                        "sup"
-                      ];
-                    };
-                  };
-                };
-                reuse.enable = true;
-                ripsecrets.enable = true;
-                zizmor.enable = true;
-              };
-            };
-            env = {
-              GOTOOLCHAIN = pkgs.lib.mkForce "go${config.devenv.shells.default.languages.go.version}";
-            };
           };
         };
       };
