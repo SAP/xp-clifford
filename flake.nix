@@ -46,11 +46,11 @@
         pkgs,
         ...
       }: {
-        packages.example = pkgs.buildGoModule {
-          pname = "tutorial";
+        packages.kubexport = pkgs.buildGoModule {
+          pname = "kubexport";
           version = "0.0.1";
           src = ./.;
-          subPackages = ["tutorial"];
+          subPackages = ["examples/kubexport"];
           vendorHash = "sha256-4VAmGMPfMPt+BcDiFHZ68AlMmrOEg6pruxxw7pMo9GQ=";
         };
         devenv.shells = let

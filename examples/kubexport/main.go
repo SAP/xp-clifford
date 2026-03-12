@@ -26,8 +26,8 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 }
 
 func main() {
-	cli.Configuration.ShortName = "test"
-	cli.Configuration.ObservedSystem = "test system"
+	cli.Configuration.ShortName = "kubexport"
+	cli.Configuration.ObservedSystem = "Kubernetes"
 	export.SetCommand(exportLogic)
 	cli.Execute()
 }

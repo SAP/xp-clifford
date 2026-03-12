@@ -1,6 +1,9 @@
 # Getting Started with xp-clifford
 
-This tutorial walks you through creating your first CLI tool using `xp-clifford`. You will set up a Go project, write a working CLI step by step, run it, and export your first resource.
+In this tutorial, you will build `kubexport` — a CLI tool that exports Kubernetes resource definitions in a format compatible with Crossplane managed resources, similar in spirit to `kubectl get -o yaml`.
+The goal is purely educational: by the end, you will have a working CLI skeleton and understand the core concepts of building exporters with `xp-clifford`.
+
+This tutorial walks you through the project setup and the first steps step by step, building up the code incrementally. Later chapters of this tutorial will extend `kubexport` with real Kubernetes API calls.
 
 ---
 
@@ -47,7 +50,7 @@ Now add `xp-clifford` as a dependency:
 go get github.com/SAP/xp-clifford
 ```
 
-This adds the module to your `go.mod`, but does not yet populate `go.sum`:
+This adds the module to your `go.mod`. Run `go mod tidy` to also populate `go.sum` with all required dependencies:
 
 ```sh
 go mod tidy
@@ -70,15 +73,15 @@ import (
 )
 
 func main() {
-    cli.Configuration.ShortName = "test"
-    cli.Configuration.ObservedSystem = "test system"
+    cli.Configuration.ShortName = "kubexport"
+    cli.Configuration.ObservedSystem = "Kubernetes"
     cli.Execute()
 }
 ```
 
 ### What each line does
 
-- `cli.Configuration.ShortName` — a short identifier for your tool, without spaces. It is used in the binary name (`test-exporter`) and in the auto-generated configuration file name.
+- `cli.Configuration.ShortName` — a short identifier for your tool, without spaces. It is used in the binary name (`kubexport-exporter`) and in the auto-generated configuration file name.
 - `cli.Configuration.ObservedSystem` — the human-readable name of the system your tool exports resources from. It appears in the help text.
 - `_ "github.com/SAP/xp-clifford/cli/export"` — this blank import registers the built-in `export` subcommand. The underscore means you only want the package's side effects (the registration), not to call anything from it directly.
 - `cli.Execute()` — starts the CLI. Everything else is handled by the framework.
@@ -92,22 +95,22 @@ go run main.go
 You should see output similar to this:
 
 ```text
-test system exporting tool is a CLI tool for exporting existing resources as Crossplane managed resources
+Kubernetes exporting tool is a CLI tool for exporting existing resources as Crossplane managed resources
 
 Usage:
-  test-exporter [command]
+  kubexport-exporter [command]
 
 Available Commands:
   completion  Generate the autocompletion script for the specified shell
-  export      Export test system resources
+  export      Export Kubernetes resources
   help        Help about any command
 
 Flags:
   -c, --config string   Configuration file
-  -h, --help            help for test-exporter
+  -h, --help            help for kubexport-exporter
   -v, --verbose         Verbose output
 
-Use "test-exporter [command] --help" for more information about a command.
+Use "kubexport-exporter [command] --help" for more information about a command.
 ```
 
 The CLI is alive. It already has a help system, shell completion, and a global `--verbose` flag — all provided by the framework.
@@ -158,8 +161,8 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 }
 
 func main() {
-    cli.Configuration.ShortName = "test"
-    cli.Configuration.ObservedSystem = "test system"
+    cli.Configuration.ShortName = "kubexport"
+    cli.Configuration.ObservedSystem = "Kubernetes"
     export.SetCommand(exportLogic)
     cli.Execute()
 }
@@ -223,8 +226,8 @@ func exportLogic(_ context.Context, events export.EventHandler) error {
 }
 
 func main() {
-    cli.Configuration.ShortName = "test"
-    cli.Configuration.ObservedSystem = "test system"
+    cli.Configuration.ShortName = "kubexport"
+    cli.Configuration.ObservedSystem = "Kubernetes"
     export.SetCommand(exportLogic)
     cli.Execute()
 }
