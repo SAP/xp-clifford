@@ -2173,3 +2173,17 @@ func main() {
 ### Footnotes
 
 <sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> [Object Names and IDs - kubernetes.io](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/)
+
+## Running the tutorial example with Nix
+
+If you have Nix with flake support enabled, you can run the tutorial example CLI directly:
+
+```sh
+nix run github:SAP/xp-clifford#example
+```
+
+Or, from a local checkout:
+
+```sh
+nix run .#example
+```

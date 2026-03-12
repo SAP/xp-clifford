@@ -35,12 +35,24 @@
         inputs.git-hooks-nix.flakeModule
         inputs.github-actions-nix.flakeModule
       ];
-      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
       perSystem = {
         config,
         pkgs,
         ...
       }: {
+        packages.kubexport = pkgs.buildGoModule {
+          pname = "kubexport";
+          version = "0.0.1";
+          src = ./.;
+          subPackages = ["examples/kubexport"];
+          vendorHash = "sha256-4VAmGMPfMPt+BcDiFHZ68AlMmrOEg6pruxxw7pMo9GQ=";
+        };
         devenv.shells = let
           env = {
             GOTOOLCHAIN = pkgs.lib.mkForce "go${config.devenv.shells.default.languages.go.version}";
