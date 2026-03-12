@@ -99,9 +99,10 @@
           default = {
             inherit env git-hooks;
             packages = with pkgs; [
-              pre-commit
+              ginkgo
               golangci-lint
               markdownlint-cli
+              pre-commit
               vhs
             ];
             languages.go = go-config;

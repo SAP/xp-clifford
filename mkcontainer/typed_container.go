@@ -7,115 +7,116 @@ import (
 	"sync"
 )
 
-// Container provides thread-safe storage and retrieval of items with
-// automatic indexing by GUID and name. Items are indexed based on which
-// interfaces they implement (ItemWithGUID and/or ItemWithName).
-type Container interface {
+// TypedContainer provides thread-safe storage and retrieval of items
+// with automatic indexing by GUID and name. Items are indexed based
+// on which interfaces they implement (ItemWithGUID and/or
+// ItemWithName).
+type TypedContainer[T any] interface {
 	// Store adds one or more items to the container. Each item is
 	// automatically indexed by its GUID and/or name if it implements
 	// the corresponding interface.
-	Store(obj ...Item)
+	Store(obj ...T)
 
 	// GetByGUID retrieves an item by its unique GUID.
 	// Returns nil if no item with the given GUID exists.
-	GetByGUID(guid string) ItemWithGUID
+	GetByGUID(guid string) T
 
 	// GetGUIDs returns a sorted slice of all GUIDs in the container.
 	GetGUIDs() []string
 
 	// AllByGUIDs returns an iterator over all GUID-indexed items
 	// as key-value pairs (GUID -> item).
-	AllByGUIDs() iter.Seq2[string, ItemWithGUID]
+	AllByGUIDs() iter.Seq2[string, T]
 
 	// GetByName retrieves all items sharing the given name.
 	// Returns nil if no items with the given name exist.
-	GetByName(name string) []ItemWithName
+	GetByName(name string) []T
 
 	// GetNames returns a sorted slice of all unique names in the container.
 	GetNames() []string
 
 	// AllByNames returns an iterator over all name-indexed items
 	// as key-value pairs (name -> slice of items).
-	AllByNames() iter.Seq2[string, []ItemWithName]
+	AllByNames() iter.Seq2[string, []T]
 
 	// IsEmpty returns true if the container has no items stored,
 	// false otherwise.
 	IsEmpty() bool
 }
 
-// container is the concrete implementation of Container.
-// It uses separate maps for GUID and name indexing, protected by a
+// typedContainer is the concrete implementation of Container. It
+// uses separate maps for GUID and name indexing, protected by a
 // read-write mutex to ensure thread safety.
-type container struct {
+type typedContainer[T any] struct {
 	lock      sync.RWMutex
-	guidIndex map[string]ItemWithGUID   // maps GUID -> single item
-	nameIndex map[string][]ItemWithName // maps name -> multiple items
+	guidIndex map[string]T   // maps GUID -> single item
+	nameIndex map[string][]T // maps name -> multiple items
 }
 
-// New creates and returns an empty Container ready for use.
-func New() Container {
-	return &container{
-		guidIndex: make(map[string]ItemWithGUID),
-		nameIndex: make(map[string][]ItemWithName),
+// NewTyped creates and returns an empty TypedContainer ready for use.
+func NewTyped[T any]() TypedContainer[T] {
+	return &typedContainer[T]{
+		guidIndex: make(map[string]T),
+		nameIndex: make(map[string][]T),
 	}
 }
 
-// Compile-time check that container implements Container.
-var _ Container = &container{}
+// Compile-time check that typedContainer implements TypedContainer.
+var _ TypedContainer[int] = &typedContainer[int]{}
 
-func (c *container) Store(objects ...Item) {
+func (c *typedContainer[T]) Store(objects ...T) {
 	c.lock.Lock()
 	defer c.lock.Unlock()
 	for _, obj := range objects {
-		if owg, ok := obj.(ItemWithGUID); ok {
-			c.guidIndex[owg.GetGUID()] = owg
+		if owg, ok := any(obj).(ItemWithGUID); ok {
+			c.guidIndex[owg.GetGUID()] = obj
 		}
-		if own, ok := obj.(ItemWithName); ok {
+		if own, ok := any(obj).(ItemWithName); ok {
 			name := own.GetName()
-			c.nameIndex[name] = append(c.nameIndex[name], own)
+			c.nameIndex[name] = append(c.nameIndex[name], obj)
 		}
 	}
 }
 
-func (c *container) GetByGUID(guid string) ItemWithGUID {
+func (c *typedContainer[T]) GetByGUID(guid string) T {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	return c.guidIndex[guid]
 }
 
-func (c *container) GetGUIDs() []string {
+func (c *typedContainer[T]) GetGUIDs() []string {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	return slices.Sorted(maps.Keys(c.guidIndex))
 }
 
-func (c *container) AllByGUIDs() iter.Seq2[string, ItemWithGUID] {
+func (c *typedContainer[T]) AllByGUIDs() iter.Seq2[string, T] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	m := maps.Clone(c.guidIndex)
 	return maps.All(m)
 }
 
-func (c *container) GetByName(name string) []ItemWithName {
+func (c *typedContainer[T]) GetByName(name string) []T {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	return c.nameIndex[name]
 }
 
-func (c *container) GetNames() []string {
+func (c *typedContainer[T]) GetNames() []string {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	return slices.Sorted(maps.Keys(c.nameIndex))
 }
 
-func (c *container) AllByNames() iter.Seq2[string, []ItemWithName] {
+func (c *typedContainer[T]) AllByNames() iter.Seq2[string, []T] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	m := maps.Clone(c.nameIndex)
 	return maps.All(m)
 }
 
-func (c *container) IsEmpty() bool {
+func (c *typedContainer[T]) IsEmpty() bool {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 	return len(c.guidIndex) == 0 && len(c.nameIndex) == 0

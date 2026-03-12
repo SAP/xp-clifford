@@ -37,3 +37,27 @@ func ExampleContainer() {
 	fmt.Print(reports[1].(*Document).Title)
 	//output: doc-1Reportdoc-1Reportdoc-2Report
 }
+
+func ExampleTypedContainer() {
+	c := mkcontainer.NewTyped[*Document]()
+
+	c.Store(
+		&Document{ID: "doc-1", Title: "Report"},
+		&Document{ID: "doc-2", Title: "Report"},
+		&Document{ID: "doc-3", Title: "Summary"},
+	)
+
+	// Lookup by unique GUID
+	doc := c.GetByGUID("doc-1")
+
+	// Lookup all documents named "Report"
+	reports := c.GetByName("Report") // returns 2 items
+
+	fmt.Print(doc.ID)
+	fmt.Print(doc.Title)
+	fmt.Print(reports[0].ID)
+	fmt.Print(reports[0].Title)
+	fmt.Print(reports[1].ID)
+	fmt.Print(reports[1].Title)
+	//output: doc-1Reportdoc-1Reportdoc-2Report
+}
