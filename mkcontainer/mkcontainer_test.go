@@ -45,7 +45,7 @@ var _ = Describe("A Container", func() {
 		It("does not contain object with name 'name1'", func() {
 			Expect(cnt.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func() {
+		It("returns an empty list of names", func() {
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
 		It("is empty", func() {
@@ -73,14 +73,14 @@ var _ = Describe("A Container", func() {
 		It("does not contain object with name 'name1'", func() {
 			Expect(cnt.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func() {
+		It("returns an empty list of names", func() {
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
 		It("is not empty", func() {
 			Expect(cnt.IsEmpty()).To(BeFalse())
 		})
 	})
-	Describe("after storing a multiple ObjectWithGUIDs", func() {
+	Describe("after storing multiple ObjectWithGUIDs", func() {
 		var owg []mkcontainer.Item
 
 		BeforeEach(func() {
@@ -113,7 +113,7 @@ var _ = Describe("A Container", func() {
 		It("does not contain object with name 'name1'", func() {
 			Expect(cnt.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func() {
+		It("returns an empty list of names", func() {
 			Expect(cnt.GetNames()).To(BeEmpty())
 		})
 		It("is not empty", func() {

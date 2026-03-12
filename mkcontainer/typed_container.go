@@ -69,11 +69,11 @@ func (c *typedContainer[T]) Store(objects ...T) {
 	defer c.lock.Unlock()
 	for _, obj := range objects {
 		if owg, ok := any(obj).(ItemWithGUID); ok {
-			c.guidIndex[owg.GetGUID()] = owg.(T)
+			c.guidIndex[owg.GetGUID()] = obj
 		}
 		if own, ok := any(obj).(ItemWithName); ok {
 			name := own.GetName()
-			c.nameIndex[name] = append(c.nameIndex[name], own.(T))
+			c.nameIndex[name] = append(c.nameIndex[name], obj)
 		}
 	}
 }
@@ -93,7 +93,8 @@ func (c *typedContainer[T]) GetGUIDs() []string {
 func (c *typedContainer[T]) AllByGUIDs() iter.Seq2[string, T] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
-	return maps.All(c.guidIndex)
+	m := maps.Clone(c.guidIndex)
+	return maps.All(m)
 }
 
 func (c *typedContainer[T]) GetByName(name string) []T {
@@ -111,7 +112,8 @@ func (c *typedContainer[T]) GetNames() []string {
 func (c *typedContainer[T]) AllByNames() iter.Seq2[string, []T] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
-	return maps.All(c.nameIndex)
+	m := maps.Clone(c.nameIndex)
+	return maps.All(m)
 }
 
 func (c *typedContainer[T]) IsEmpty() bool {

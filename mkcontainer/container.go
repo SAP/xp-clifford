@@ -92,7 +92,8 @@ func (c *container) GetGUIDs() []string {
 func (c *container) AllByGUIDs() iter.Seq2[string, ItemWithGUID] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
-	return maps.All(c.guidIndex)
+	m := maps.Clone(c.guidIndex)
+	return maps.All(m)
 }
 
 func (c *container) GetByName(name string) []ItemWithName {
@@ -110,7 +111,8 @@ func (c *container) GetNames() []string {
 func (c *container) AllByNames() iter.Seq2[string, []ItemWithName] {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
-	return maps.All(c.nameIndex)
+	m := maps.Clone(c.nameIndex)
+	return maps.All(m)
 }
 
 func (c *container) IsEmpty() bool {

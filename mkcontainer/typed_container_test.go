@@ -29,7 +29,7 @@ var _ = Describe("A TypedContainer", func() {
 		It("does not contain object with name 'name1'", func() {
 			Expect(cntg.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func() {
+		It("returns an empty list of names", func() {
 			Expect(cntg.GetNames()).To(BeEmpty())
 		})
 		It("is empty", func() {
@@ -57,14 +57,14 @@ var _ = Describe("A TypedContainer", func() {
 		It("does not contain object with name 'name1'", func() {
 			Expect(cntg.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func() {
+		It("returns an empty list of names", func() {
 			Expect(cntg.GetNames()).To(BeEmpty())
 		})
 		It("is not empty", func() {
 			Expect(cntg.IsEmpty()).To(BeFalse())
 		})
 	})
-	Describe("after storing a multiple ObjectWithGUIDs", func() {
+	Describe("after storing multiple ObjectWithGUIDs", func() {
 		var owg []*testOWG
 
 		BeforeEach(func() {
@@ -97,7 +97,7 @@ var _ = Describe("A TypedContainer", func() {
 		It("does not contain object with name 'name1'", func() {
 			Expect(cntg.GetByName("name1")).To(BeNil())
 		})
-		It("returns an empyt list of names", func() {
+		It("returns an empty list of names", func() {
 			Expect(cntg.GetNames()).To(BeEmpty())
 		})
 		It("is not empty", func() {
