@@ -102,4 +102,71 @@ var _ = Describe("Rfc1035", func() {
 			}))
 		})
 	})
+	Describe("RFC1035Subdomain with long subdomains", func() {
+		var rule parsan.Rule
+
+		BeforeEach(func() {
+			rule = parsan.GenerateRFC1035Subdomain().LabelMaxLength(253)
+		})
+		It("sanitizes ''", func() {
+			Expect(parsan.ParseAndSanitize("", rule)).To(Equal([]string{"x"}))
+		})
+		It("matches 'kubernetes-custom-resource'", func() {
+			Expect(parsan.ParseAndSanitize("kubernetes-custom-resource", rule)).To(Equal([]string{"kubernetes-custom-resource"}))
+		})
+		It("sanitizes '1kubernetes-custom-resource'", func() {
+			Expect(parsan.ParseAndSanitize("1kubernetes-custom-resource", rule)).To(Equal([]string{"x1kubernetes-custom-resource", "xkubernetes-custom-resource"}))
+		})
+		It("matches 'kubernetes-custom-resource1'", func() {
+			Expect(parsan.ParseAndSanitize("kubernetes-custom-resource1", rule)).To(Equal([]string{"kubernetes-custom-resource1"}))
+		})
+		It("matches 'a.b'", func() {
+			Expect(parsan.ParseAndSanitize("a.b", rule)).To(Equal([]string{"a.b"}))
+		})
+		It("matches 'a.b.c'", func() {
+			Expect(parsan.ParseAndSanitize("a.b.c", rule)).To(Equal([]string{"a.b.c"}))
+		})
+		It("matches 'kubernetes.custom.resource'", func() {
+			Expect(parsan.ParseAndSanitize("kubernetes.custom.resource", rule)).To(Equal([]string{"kubernetes.custom.resource"}))
+		})
+		It("matches 'kubernetes1.custom2.resource3'", func() {
+			Expect(parsan.ParseAndSanitize("kubernetes1.custom2.resource3", rule)).To(Equal([]string{"kubernetes1.custom2.resource3"}))
+		})
+		It("sanitizes '1kubernetes.2custom.1resource'", func() {
+			Expect(parsan.ParseAndSanitize("1kubernetes.2custom.3resource", rule)).To(Equal([]string{
+				"x1kubernetes.x2custom.x3resource",
+				"x1kubernetes.x2custom.xresource",
+				"x1kubernetes.xcustom.x3resource",
+				"xkubernetes.x2custom.x3resource",
+				"x1kubernetes.xcustom.xresource",
+				"xkubernetes.x2custom.xresource",
+				"xkubernetes.xcustom.x3resource",
+				"xkubernetes.xcustom.xresource",
+			}))
+		})
+		It("sanitizes 'do+it+now'", func() {
+			Expect(parsan.ParseAndSanitize("do+it+now", rule)).To(Equal([]string{"do-it-now"}))
+		})
+		It("sanitizes 'do+it+now.r!ght.n0w$'", func() {
+			Expect(parsan.ParseAndSanitize("do+it+now.r!ght.n0w$", rule)).To(Equal([]string{"do-it-now.r-ght.n0wx"}))
+		})
+		It("matches 'a23456789012345678901234567890123456789012345678901234567890123'", func() {
+			Expect(parsan.ParseAndSanitize("a23456789012345678901234567890123456789012345678901234567890123", rule)).To(Equal([]string{"a23456789012345678901234567890123456789012345678901234567890123"}))
+		})
+		It("sanitizes 'a234567890123456789012345678901234567890123456789012345678901234'", func() {
+			Expect(parsan.ParseAndSanitize("a234567890123456789012345678901234567890123456789012345678901234", rule)).To(Equal([]string{"a234567890123456789012345678901234567890123456789012345678901234"}))
+		})
+		It("sanitizes '123456789012345678901234567890123456789012345678901234567890123'", func() {
+			Expect(parsan.ParseAndSanitize("123456789012345678901234567890123456789012345678901234567890123", rule)).To(Equal([]string{
+				"x123456789012345678901234567890123456789012345678901234567890123",
+				"x23456789012345678901234567890123456789012345678901234567890123",
+			}))
+		})
+		It("sanitizes '1234567890123456789012345678901234567890123456789012345678901234'", func() {
+			Expect(parsan.ParseAndSanitize("1234567890123456789012345678901234567890123456789012345678901234", rule)).To(Equal([]string{
+				"x1234567890123456789012345678901234567890123456789012345678901234",
+				"x234567890123456789012345678901234567890123456789012345678901234",
+			}))
+		})
+	})
 })
