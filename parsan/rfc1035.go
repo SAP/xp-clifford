@@ -160,17 +160,10 @@ func (rule *RFC1035LabelRule) firstLetter() Rule {
 // lastLetter creates the rule that matches the final character of a label,
 // substituting an invalid character with the placeholder rune “x”.
 func (rule *RFC1035LabelRule) lastLetter() Rule {
-	switch {
-	case !rule.lowercase && !rule.mayStartWithDigit:
-		return LetDig(ReplaceFirstRuneWithStrings("x"))
-	case !rule.lowercase && rule.mayStartWithDigit:
-		return LetDig(ReplaceFirstRuneWithStrings("x"))
-	case rule.lowercase && !rule.mayStartWithDigit:
-		return LowerLetter(ReplaceFirstRuneWithStrings("x"))
-	case rule.lowercase && rule.mayStartWithDigit:
+	if rule.lowercase {
 		return LowerLetDig(ReplaceFirstRuneWithStrings("x"))
 	}
-	panic("cannot reach this point")
+	return LetDig(ReplaceFirstRuneWithStrings("x"))
 }
 
 // midLetter creates the optional rule that validates the middle characters of
