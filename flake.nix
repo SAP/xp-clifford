@@ -51,7 +51,7 @@
           version = "0.0.1";
           src = ./.;
           subPackages = ["examples/kubexport"];
-          vendorHash = "sha256-4VAmGMPfMPt+BcDiFHZ68AlMmrOEg6pruxxw7pMo9GQ=";
+          vendorHash = "sha256-H/qvlPrzmaqQBN696JpQC6XkwZFASWpj8l7tXcH5dEU=";
         };
         devenv.shells = let
           env = {
