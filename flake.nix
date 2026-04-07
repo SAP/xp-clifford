@@ -75,6 +75,7 @@
               govet.enable = true;
               markdownlint = {
                 enable = true;
+                package = pkgs.markdownlint-cli;
                 settings.configuration = {
                   MD010 = {
                     code_blocks = false;
