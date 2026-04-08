@@ -1,0 +1,31 @@
+# Overview
+
+`xp-clifford` (Crossplane CLI Framework for Resource Data Extraction) is a Go module for building CLI tools that export definitions of external resources as Crossplane provider managed resource definitions.
+
+Exported definitions can be imported into Crossplane using the [standard import procedure](https://docs.crossplane.io/v2.1/guides/import-existing-resources/).
+
+## Core Concepts
+
+The framework provides the following building blocks:
+
+- **Export pipeline** — Define export logic via a function that sends resources, warnings, and stop events to the CLI framework.
+- **Configuration parameters** — Typed parameters (`bool`, `int`, `string`, `[]string`) supporting CLI flags, environment variables, and YAML config files.
+- **Interactive widgets** — Terminal UI widgets for text input, number input, duration input, and multi-selection.
+- **Subcommands** — Extend the CLI with custom subcommands beyond the built-in `export` command.
+- **Error handling** — Structured errors with key-value attributes for logging via `slog`.
+- **Sanitization** — Transform strings to comply with Kubernetes naming rules (RFC 1035 subdomain variants).
+- **Multi-key container** — Thread-safe container with O(1) lookups by GUID and name.
+
+## Project Structure
+
+```text
+xp-clifford/
+├── cli/            # CLI framework, configuration, widgets
+│   ├── configparam/  # Configuration parameter types
+│   ├── export/       # Export pipeline
+│   └── widget/       # Interactive terminal widgets
+├── erratt/         # Errors with attributes
+├── mkcontainer/    # Multi-key container
+├── parsan/         # Parsing and sanitization
+└── yaml/           # YAML output with comment support
+```

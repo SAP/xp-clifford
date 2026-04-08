@@ -1,0 +1,67 @@
+# Error Handling with Attributes
+
+The `erratt` package provides an error type with structured key-value attributes, designed for use with `slog` and the `EventHandler.Warn` method.
+
+## Creating Errors
+
+```go
+// Simple error
+err := erratt.New("something went wrong")
+
+// Error with attributes
+err := erratt.New("error opening file", "filename", filename)
+err := erratt.New("authentication failed", "username", user, "password", pass)
+```
+
+## Wrapping Errors
+
+Wrap existing Go errors while preserving attributes:
+
+```go
+err := callFunction()
+wrapped := erratt.Errorf("unexpected error: %w", err)
+```
+
+## Adding Attributes
+
+Chain `With()` to add context:
+
+```go
+err := connectToServer(url, user, pass)
+wrapped := erratt.Errorf("cannot connect: %w", err).
+    With("url", url, "username", user)
+```
+
+## Full Example
+
+```go
+func auth() erratt.Error {
+    return erratt.New("authentication failure",
+        "username", "test-user",
+        "password", "test-password",
+    )
+}
+
+func connect() erratt.Error {
+    err := auth()
+    if err != nil {
+        return erratt.Errorf("connect failed: %w", err).
+            With("url", "https://example.com")
+    }
+    return nil
+}
+```
+
+Output via `slog`:
+
+```text
+ERRO connect failed: authentication failure url=https://example.com username=test-user password=test-password
+```
+
+## Integration with EventHandler
+
+The `Warn` method handles `erratt.Error` values, preserving structured attributes in the log output:
+
+```go
+events.Warn(erratt.New("resource skipped", "kind", kind, "name", name))
+```

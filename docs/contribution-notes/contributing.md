@@ -1,0 +1,100 @@
+# Contributing to xp-clifford
+
+## General Remarks
+
+You are welcome to contribute content (code, documentation, etc.) to this project. There are some important things to know:
+
+1. You must **comply with the license of this project** and **accept the Developer Certificate of Origin** (see below) before being able to contribute.
+2. Please **adhere to our [Code of Conduct](https://github.com/SAP/.github/blob/main/CODE_OF_CONDUCT.md)**.
+3. If you plan to use **generative AI for your contribution**, please see our [guideline for AI-generated code](https://github.com/SAP/.github/blob/main/CONTRIBUTING_USING_GENAI.md).
+4. **Not all proposed contributions can be accepted**. Some features
+   may fit another project better or don't fit the general direction
+   of this project. The more effort you invest, the better you should
+   clarify in advance whether the contribution will match the
+   project's direction. Open an issue to discuss the feature you plan
+   to implement (make it clear that you intend to contribute). We will
+   then forward the proposal to the respective code owner.
+
+## Developer Certificate of Origin (DCO)
+
+Contributors will be asked to accept a DCO before they submit the first pull request to this project, this happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
+
+## How to Contribute
+
+1. Make sure the change is welcome (see [General Remarks](#general-remarks)).
+2. Create a branch by forking the repository and apply your change.
+3. Commit and push your change on that branch.
+4. Create a pull request in the repository using this branch.
+5. Follow the link posted by the CLA assistant to your pull request and accept it, as described above.
+6. Wait for our code review and approval, possibly enhancing your change on request.
+7. Once the change has been approved and merged, we will inform you in a comment.
+
+## Development Environment
+
+The `xp-clifford` repository provides a reproducible development environment powered by [Nix](https://nixos.org/). This environment includes the Go compiler, linters, and all tools needed to contribute to the project.
+
+### Prerequisites
+
+1. Install the [Nix package manager](https://nixos.org/download/)
+2. Enable [flake support](https://nixos.wiki/wiki/Flakes)
+
+### Getting Started
+
+After cloning the repository, enter the development environment:
+
+```sh
+nix develop --no-pure-eval
+```
+
+> **Note:** The initial setup may take several minutes as dependencies are downloaded and configured.
+
+Upon entering the environment, [pre-commit](https://pre-commit.com/) hooks are automatically installed. These hooks run various checks before each Git commit to ensure code quality.
+
+### Direnv Integration (Optional)
+
+For a seamless experience, you can use [direnv](https://direnv.net/) to automatically activate the development environment when entering the project directory.
+
+1. [Install direnv](https://direnv.net/docs/installation.html)
+2. Navigate to the cloned repository
+3. Allow the direnv configuration:
+
+```sh
+direnv allow
+```
+
+## Project Structure
+
+```text
+xp-clifford/
+├── cli/                 # Core CLI framework
+│   ├── configparam/     # Typed configuration parameters
+│   ├── export/          # Export subcommand framework
+│   └── widget/          # Interactive CLI widgets
+├── erratt/              # Errors with structured attributes
+├── examples/            # Working examples for each feature
+├── mkcontainer/         # Multi-key container package
+├── parsan/              # Parsing and sanitization utilities
+├── yaml/                # YAML output helpers (commented resources)
+├── flake.nix            # Nix flake for dev environment and examples
+└── go.mod
+```
+
+## Running Tests
+
+```sh
+go test ./...
+```
+
+## Running the Example CLI
+
+Using Nix:
+
+```sh
+nix run .#example
+```
+
+Using Go:
+
+```sh
+go run ./examples/\<example-name\>/main.go \<command\>
+```

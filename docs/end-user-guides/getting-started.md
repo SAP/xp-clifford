@@ -1,0 +1,70 @@
+# Getting Started
+
+## Prerequisites
+
+A working Go development environment.
+
+## Installation
+
+```sh
+go get github.com/SAP/xp-clifford
+```
+
+## Minimal CLI Tool
+
+Every CLI tool built with `xp-clifford` follows the same pattern: configure the framework, optionally set up export logic, and execute.
+
+```go
+package main
+
+import (
+    "github.com/SAP/xp-clifford/cli"
+    _ "github.com/SAP/xp-clifford/cli/export"
+)
+
+func main() {
+    cli.Configuration.ShortName = "test"
+    cli.Configuration.ObservedSystem = "test system"
+    cli.Execute()
+}
+```
+
+Two packages must be imported:
+
+- `github.com/SAP/xp-clifford/cli` — core framework
+- `github.com/SAP/xp-clifford/cli/export` — export subcommand (imported for side effects)
+
+The `Configuration` variable sets two required fields:
+
+- **`ShortName`** — Abbreviated system name without spaces (e.g., `"cf"` for Cloud Foundry)
+- **`ObservedSystem`** — Full system name (e.g., `"Cloud Foundry"`)
+
+Running this produces:
+
+```sh
+go run main.go
+```
+
+```text
+test system exporting tool is a CLI tool for exporting existing resources as Crossplane managed resources
+
+Usage:
+  test-exporter [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  export      Export test system resources
+  help        Help about any command
+
+Flags:
+  -c, --config string   Configuration file
+  -h, --help            help for test-exporter
+  -v, --verbose         Verbose output
+```
+
+## Next Steps
+
+- [Exporting Resources](./exporting-resources.md) — Implement the export logic
+- [Configuration](./configuration.md) — Add CLI flags, env vars, and config files
+- [Widgets](./widgets.md) — Add interactive prompts
+- [Subcommands](./subcommands.md) — Add custom subcommands

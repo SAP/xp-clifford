@@ -1,0 +1,74 @@
+# Custom Subcommands
+
+Beyond the built-in `export` subcommand, you can define custom subcommands by implementing the `cli.SubCommand` interface or using `cli.BasicSubCommand`.
+
+## BasicSubCommand
+
+The simplest approach uses `BasicSubCommand`:
+
+```go
+func login(_ context.Context) error {
+    slog.Info("login invoked")
+    return nil
+}
+
+var loginCmd = &cli.BasicSubCommand{
+    Name:         "login",
+    Short:        "Login demo subcommand",
+    Long:         "A subcommand demonstrating xp-clifford capabilities",
+    ConfigParams: []configparam.ConfigParam{},
+    Run:          login,
+}
+
+func main() {
+    cli.Configuration.ShortName = "test"
+    cli.Configuration.ObservedSystem = "test system"
+    cli.RegisterSubCommand(loginCmd)
+    cli.Execute()
+}
+```
+
+Fields:
+
+| Field          | Type                          | Description                         |
+|----------------|-------------------------------|-------------------------------------|
+| `Name`         | `string`                      | Subcommand name                     |
+| `Short`        | `string`                      | One-line description (help listing) |
+| `Long`         | `string`                      | Full description (subcommand help)  |
+| `ConfigParams` | `[]configparam.ConfigParam`   | Parameters for this subcommand      |
+| `Run`          | `func(context.Context) error` | Business logic                      |
+
+## Subcommands with Parameters
+
+Add configuration parameters via the `ConfigParams` field:
+
+```go
+var testParam = configparam.Bool("test", "test bool parameter").
+    WithShortName("t").
+    WithEnvVarName("CLIFFORD_TEST")
+
+var loginCmd = &cli.BasicSubCommand{
+    Name:         "login",
+    Short:        "Login demo subcommand",
+    ConfigParams: []configparam.ConfigParam{testParam},
+    Run: func(_ context.Context) error {
+        slog.Info("login invoked", "test", testParam.Value())
+        return nil
+    },
+}
+```
+
+The subcommand help then shows the custom flags:
+
+```text
+Usage:
+  test-exporter login [flags]
+
+Flags:
+  -h, --help   help for login
+  -t, --test   test bool parameter
+
+Global Flags:
+  -c, --config string   Configuration file
+  -v, --verbose         Verbose output
+```
