@@ -1,0 +1,129 @@
+# Configuration Parameters
+
+`xp-clifford` provides typed configuration parameters that support three input methods with a defined precedence:
+
+1. **CLI flags** (highest precedence)
+2. **Environment variables**
+3. **Configuration file** (lowest precedence)
+
+## Supported Types
+
+| Type        | Constructor                           | Go Type         |
+|-------------|---------------------------------------|-----------------|
+| Bool        | `configparam.Bool(name, desc)`        | `bool`          |
+| Int         | `configparam.Int(name, desc)`         | `int`           |
+| Float       | `configparam.Float(name, desc)`       | `float64`       |
+| Duration    | `configparam.Duration(name, desc)`    | `time.Duration` |
+| String      | `configparam.String(name, desc)`      | `string`        |
+| StringSlice | `configparam.StringSlice(name, desc)` | `[]string`      |
+| IntSlice    | `configparam.IntSlice(name, desc)`    | `[]int`         |
+
+## Defining a Parameter
+
+Each parameter supports optional chaining:
+
+```go
+var usernameParam = configparam.String("username", "username for authentication").
+    WithShortName("u").
+    WithEnvVarName("USERNAME").
+    WithDefaultValue("testuser")
+```
+
+Available methods:
+
+- **`WithShortName(s)`** — Single-character CLI flag
+- **`WithFlagName(s)`** — Long CLI flag (defaults to `name`)
+- **`WithEnvVarName(s)`** — Environment variable name
+- **`WithDefaultValue(v)`** — Default value
+
+## Reading Values
+
+```go
+usernameParam.Value()    // current value
+usernameParam.IsSet()    // true if explicitly set by user
+```
+
+### Interactive Prompting
+
+All parameter types support `ValueOrAsk(ctx)` — returns the value if set, otherwise prompts interactively:
+
+```go
+username, err := usernameParam.ValueOrAsk(ctx)
+```
+
+Slice types (`StringSlice`, `IntSlice`) support `WithPossibleValues` or `WithPossibleValuesFn` to define the selection options:
+
+```go
+var protocolParam = configparam.StringSlice("protocol", "supported protocols").
+    WithShortName("p").
+    WithEnvVarName("PROTOCOLS").
+    WithPossibleValues([]string{"HTTP", "HTTPS", "FTP", "SSH", "SFTP"})
+```
+
+Dynamic options based on runtime state:
+
+```go
+func possibleProtocols() ([]string, error) {
+    if secureParam.Value() {
+        return []string{"HTTPS", "SFTP", "SSH"}, nil
+    }
+    return []string{"FTP", "HTTP"}, nil
+}
+
+var protocolParam = configparam.StringSlice("protocol", "supported protocols").
+    WithPossibleValuesFn(possibleProtocols)
+```
+
+## Registering Parameters
+
+### Export subcommand
+
+```go
+export.AddConfigParams(usernameParam, protocolParam)
+```
+
+### Custom subcommands
+
+Set `ConfigParams` on a `BasicSubCommand`:
+
+```go
+var loginCmd = &cli.BasicSubCommand{
+    Name:         "login",
+    Short:        "Login subcommand",
+    ConfigParams: []configparam.ConfigParam{usernameParam},
+    Run:          loginLogic,
+}
+```
+
+## Built-in Flags
+
+The `export` subcommand includes:
+
+| Flag             | Type       | Description               |
+|------------------|------------|---------------------------|
+| `-k`, `--kind`   | `[]string` | Resource kinds to export  |
+| `-o`, `--output` | `string`   | Redirect output to a file |
+
+Global flags:
+
+| Flag              | Type     | Description                |
+|-------------------|----------|----------------------------|
+| `-c`, `--config`  | `string` | Path to configuration file |
+| `-v`, `--verbose` | `bool`   | Enable debug-level logging |
+
+## Configuration File
+
+YAML file with lowercase parameter names as keys:
+
+```yaml
+protocol:
+  - HTTP
+  - FTP
+username: config-user
+bool: true
+```
+
+Specify via `-c` flag, or auto-discovered from:
+
+1. `$XDG_CONFIG_HOME/export-cli-config-\<shortname\>`
+2. `$HOME/export-cli-config-\<shortname\>`
