@@ -9,15 +9,15 @@
 
 ## Documentation
 
-- [Overview](docs/end-user-guides/overview.md)
-- [Getting Started](docs/end-user-guides/getting-started.md)
-- [Exporting Resources](docs/end-user-guides/exporting-resources.md)
-- [Configuration Parameters](docs/end-user-guides/configuration.md)
-- [Interactive Widgets](docs/end-user-guides/widgets.md)
-- [Custom Subcommands](docs/end-user-guides/subcommands.md)
-- [Error Handling](docs/end-user-guides/error-handling.md)
-- [Parsing and Sanitization](docs/end-user-guides/sanitization.md)
-- [mkcontainer Package](docs/end-user-guides/mkcontainer.md)
+- [Overview](docs/end-user-guides/overview.mdx)
+- [Getting Started](docs/end-user-guides/getting-started.mdx)
+- [Exporting Resources](docs/end-user-guides/exporting-resources.mdx)
+- [Configuration Parameters](docs/end-user-guides/configuration.mdx)
+- [Interactive Widgets](docs/end-user-guides/widgets.mdx)
+- [Custom Subcommands](docs/end-user-guides/subcommands.mdx)
+- [Error Handling](docs/end-user-guides/error-handling.mdx)
+- [Parsing and Sanitization](docs/end-user-guides/sanitization.mdx)
+- [mkcontainer Package](docs/end-user-guides/mkcontainer.mdx)
 
 ## Support, Feedback, Contributing
 
