@@ -113,7 +113,11 @@ Global flags:
 | Flag              | Type     | Description                |
 |-------------------|----------|----------------------------|
 | `-c`, `--config`  | `string` | Path to configuration file |
+| `--timeout`       | `duration` | API request timeout        |
 | `-v`, `--verbose` | `bool`   | Enable debug-level logging |
+
+The built-in timeout is available as `cli.TimeoutParam.Value()` and defaults to `30s`.
+Set `cli.Configuration.HasTimeoutParam = false` to disable it.
 
 ## Configuration File
 

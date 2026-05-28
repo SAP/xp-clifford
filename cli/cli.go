@@ -3,6 +3,7 @@ package cli
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/SAP/xp-clifford/cli/configparam"
 	"github.com/SAP/xp-clifford/erratt"
@@ -16,6 +17,9 @@ func init() {
 }
 
 var rootCommand *cobra.Command
+
+var TimeoutParam = configparam.Duration("timeout", "API request timeout").
+	WithDefaultValue(30 * time.Second)
 
 // Execute function is the main entrypoint for the CLI tool.
 func Execute() {
@@ -44,6 +48,10 @@ type CLIConfiguration struct {
 	// HasVerboseFlag indicates whether the CLI tool shall support
 	// the --verbose/-v flag.
 	HasVerboseFlag bool
+
+	// HasTimeoutParam indicates whether the CLI tool shall support
+	// the --timeout duration parameter.
+	HasTimeoutParam bool
 }
 
 func defaultCLIConfiguration() CLIConfiguration {
@@ -52,6 +60,7 @@ func defaultCLIConfiguration() CLIConfiguration {
 		ShortName:       "SHORTNAME_NOT_SET",
 		ObservedSystem:  "OBSERVED_SYSTEM_NOT_SET",
 		HasVerboseFlag:  true,
+		HasTimeoutParam: true,
 	}
 }
 
@@ -98,10 +107,16 @@ func configureCLI() error {
 			if config.HasVerboseFlag {
 				verboseFlag.BindConfiguration(cmd)
 			}
+			if config.HasTimeoutParam {
+				TimeoutParam.BindConfiguration(cmd)
+			}
 		},
 	}
 	if config.HasVerboseFlag {
 		verboseFlag.AttachToCommand(rootCommand)
+	}
+	if config.HasTimeoutParam {
+		TimeoutParam.AttachToCommand(rootCommand)
 	}
 
 	return nil
