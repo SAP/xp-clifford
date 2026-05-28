@@ -12,7 +12,7 @@ import (
 	"github.com/SAP/xp-clifford/yaml"
 
 	"github.com/charmbracelet/log"
-	"github.com/crossplane/crossplane-runtime/pkg/resource"
+	"github.com/crossplane/crossplane-runtime/v2/pkg/resource"
 )
 
 func printErrors(ctx context.Context, wg *sync.WaitGroup, errChan <-chan error) {

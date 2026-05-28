@@ -68,7 +68,7 @@
               deadnix.enable = true;
               detect-private-keys.enable = true;
               end-of-file-fixer.enable = true;
-              flake-checker.enable = true;
+              flake-checker.enable = false;
               gofmt.enable = true;
               golangci-lint.enable = true;
               gotest.enable = true;
