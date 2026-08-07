@@ -1,0 +1,94 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Install CLI
+
+An exporter CLI is available for both **BTP** and **Cloud Foundry**. Select the tab for your provider below.
+
+Want to bring this feature to any Crossplane provider?
+Checkout [xp-clifford](./contribution-notes/overview) and see our [contribution docs](./contribution-notes/getting-started) to learn how.
+
+<Tabs>
+  <TabItem value="btp" label="BTP" default>
+
+## Prerequisites
+
+- [Go](https://go.dev/dl/) 1.21+
+- [BTP CLI](https://tools.hana.ondemand.com/#cloud) installed and on your `PATH`
+
+## Clone and build
+
+```bash
+git clone https://github.com/sap/crossplane-provider-btp.git
+cd crossplane-provider-btp
+```
+
+Build the `btp-exporter` binary:
+
+```bash
+go build -o btp-exporter ./cmd/exporter
+```
+
+Verify it works:
+
+```bash
+./btp-exporter --help
+```
+
+## (Optional) Install to PATH
+
+```bash
+mv btp-exporter /usr/local/bin/
+```
+
+Then call it from anywhere:
+
+```bash
+btp-exporter --help
+```
+
+  </TabItem>
+  <TabItem value="cf" label="Cloud Foundry">
+
+## Prerequisites
+
+- [Go](https://go.dev/dl/) 1.21+
+- [CF CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) installed and on your `PATH` (optional, needed for `--use-cf-login`)
+
+## Clone and build
+
+```bash
+git clone https://github.com/SAP/crossplane-provider-cloudfoundry.git
+cd crossplane-provider-cloudfoundry
+```
+
+Build the `xpcf` binary:
+
+```bash
+go build -o xpcf ./cmd/exporter
+```
+
+Verify it works:
+
+```bash
+./xpcf --help
+```
+
+## (Optional) Install to PATH
+
+```bash
+mv xpcf /usr/local/bin/
+```
+
+Then call it from anywhere:
+
+```bash
+xpcf --help
+```
+
+  </TabItem>
+</Tabs>
