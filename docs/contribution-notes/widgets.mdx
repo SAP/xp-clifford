@@ -42,11 +42,55 @@ protocols, err := widget.MultiInput(ctx,
 )
 ```
 
+## TreeInput
+
+Multi-selection interface for nested options, with indentation before each checkbox.
+
+```go
+func TreeInput(ctx context.Context, title string, options []TreeOption) ([]string, error)
+
+type TreeOption struct {
+    Label    string
+    Children []TreeOption
+}
+```
+
+`NewTreeOption` takes a string and optional children. Like `MultiInput`, the string
+is both displayed and returned when selected. A node stores only its label and children.
+**Nesting defines the hierarchy**. Repeated strings have independent checkboxes
+and are returned once per selected node.
+
+```go
+selected, err := widget.TreeInput(ctx, "Select protocols", []widget.TreeOption{
+    widget.NewTreeOption("Web",
+        widget.NewTreeOption("HTTP"),
+        widget.NewTreeOption("HTTPS"),
+    ),
+    widget.NewTreeOption("SSH"),
+})
+```
+
+Will be rendered to:
+
+```text
+┃ Select protocols
+┃ 0/4 selected
+┃ > [ ] Web
+┃       [ ] HTTP
+┃       [ ] HTTPS
+┃   [ ] SSH
+```
+
 ## Integration with Configuration Parameters
 
 Widgets integrate with configuration parameters via `ValueOrAsk(ctx)`:
 
 - `StringParam.ValueOrAsk(ctx)` — uses `TextInput`
-- `StringSliceParam.ValueOrAsk(ctx)` — uses `MultiInput` (requires `WithPossibleValues` or `WithPossibleValuesFn`)
+- `StringSliceParam.ValueOrAsk(ctx)` — uses `MultiInput` for flat choices or `TreeInput` for tree choices.
+- `IntSliceParam.ValueOrAsk(ctx)` — uses `MultiInputOfType` or `TreeInputOfType` with `IntConverter`.
+
+Supply flat choices with `WithPossibleValues` / `WithPossibleValuesFn`, or tree
+choices with `WithTreeOptions` / `WithTreeOptionsFn`. Tree providers run only when
+the parameter is unset. Selected labels are stored as normal slices.
 
 See [Configuration](./configuration.mdx) for details.

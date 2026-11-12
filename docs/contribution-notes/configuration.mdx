@@ -78,6 +78,41 @@ var protocolParam = configparam.StringSlice("protocol", "supported protocols").
     WithPossibleValuesFn(possibleProtocols)
 ```
 
+### Tree Selection
+
+`StringSlice` and `IntSlice` also support nested choices through `WithTreeOptions`
+or `WithTreeOptionsFn`. `ValueOrAsk(ctx)` uses the tree widget when the parameter
+is unset and stores the selection as an ordinary `[]string` or `[]int`.
+
+```go
+var protocolParam = configparam.StringSlice("protocol", "Select protocols").
+    WithTreeOptions([]widget.TreeOption{
+        widget.NewTreeOption("Web",
+            widget.NewTreeOption("HTTP"),
+            widget.NewTreeOption("HTTPS"),
+        ),
+        widget.NewTreeOption("SSH"),
+    })
+
+protocols, err := protocolParam.ValueOrAsk(ctx)
+```
+
+For dynamic data, supply a function that loads the tree when needed:
+
+```go
+var numbersParam = configparam.IntSlice("numbers", "Select numbers").
+    WithTreeOptionsFn(func() ([]widget.TreeOptionOfType[int], error) {
+        return []widget.TreeOptionOfType[int]{
+            widget.NewTreeOptionOfType(10,
+                widget.NewTreeOptionOfType(20),
+                widget.NewTreeOptionOfType(30),
+            ),
+        }, nil
+    })
+
+numbers, err := numbersParam.ValueOrAsk(ctx)
+```
+
 ## Registering Parameters
 
 ### Export subcommand

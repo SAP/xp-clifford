@@ -13,7 +13,7 @@
 - [Getting Started](docs/end-user-guides/getting-started.mdx)
 - [Exporting Resources](docs/end-user-guides/exporting-resources.mdx)
 - [Configuration Parameters](docs/end-user-guides/configuration.mdx)
-- [Interactive Widgets](docs/end-user-guides/widgets.mdx)
+- [Interactive Widgets](docs/contribution-notes/widgets.mdx)
 - [Custom Subcommands](docs/end-user-guides/subcommands.mdx)
 - [Error Handling](docs/end-user-guides/error-handling.mdx)
 - [Parsing and Sanitization](docs/end-user-guides/sanitization.mdx)
