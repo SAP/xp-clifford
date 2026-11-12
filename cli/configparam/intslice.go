@@ -112,7 +112,7 @@ func (p *IntSliceParam) ValueOrAsk(ctx context.Context) ([]int, error) {
 		values, err = widget.TreeInputOfType(ctx, p.Description, options, widget.IntConverter)
 	} else {
 		if len(p.possibleValues) == 0 && p.possibleValuesFn == nil {
-			return nil, erratt.New("StringSliceParam ValueOrAsk invoked but possibleValues are not set", "name", p.Name)
+			return nil, erratt.New("IntSliceParam ValueOrAsk invoked but possibleValues are not set", "name", p.Name)
 		}
 		possibleValues := p.possibleValues
 		if len(possibleValues) == 0 {
