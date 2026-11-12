@@ -11,6 +11,7 @@ import (
 )
 
 type stringSlicePossibleValuesFnType func() ([]string, error)
+type stringSliceTreeOptionsFnType func() ([]widget.TreeOption, error)
 
 // StringSliceParam type represents a configuration parameterkxo that
 // holds a []string value.
@@ -19,6 +20,7 @@ type StringSliceParam struct {
 	sensitive        bool
 	possibleValues   []string
 	possibleValuesFn stringSlicePossibleValuesFnType
+	treeOptionsFn    stringSliceTreeOptionsFnType
 }
 
 var _ ConfigParam = &StringSliceParam{}
@@ -47,17 +49,35 @@ func SensitiveStringSlice(name, description string) *StringSliceParam {
 
 // WithPossibleValues restricts the interactive selection to the
 // supplied slice. When the CLI prompts the user, only these strings
-// are offered as choices.
+// are offered as choices. This switches to flat selection.
 func (p *StringSliceParam) WithPossibleValues(values []string) *StringSliceParam {
 	p.possibleValues = values
+	p.treeOptionsFn = nil
 	return p
 }
 
 // WithPossibleValuesFn lazily supplies the valid choices for
 // interactive selection. The given function is called when the CLI
 // prompts the user. The returned strings are presented as options.
+// This switches to flat selection.
 func (p *StringSliceParam) WithPossibleValuesFn(fn func() ([]string, error)) *StringSliceParam {
 	p.possibleValuesFn = fn
+	p.treeOptionsFn = nil
+	return p
+}
+
+// WithTreeOptions supplies nested choices for ValueOrAsk using widget.TreeInput.
+// Selected labels are stored as a string slice. This replaces the tree provider
+// and takes precedence over flat choices. An empty tree yields an empty slice.
+func (p *StringSliceParam) WithTreeOptions(options []widget.TreeOption) *StringSliceParam {
+	return p.WithTreeOptionsFn(func() ([]widget.TreeOption, error) { return options, nil })
+}
+
+// WithTreeOptionsFn lazily supplies nested choices for ValueOrAsk. The function
+// is called only when the parameter is unset. It replaces any previous tree
+// provider; passing nil switches back to flat selection.
+func (p *StringSliceParam) WithTreeOptionsFn(fn func() ([]widget.TreeOption, error)) *StringSliceParam {
+	p.treeOptionsFn = fn
 	return p
 }
 
@@ -74,8 +94,9 @@ func (p *StringSliceParam) Value() []string {
 }
 
 // ValueOrAsk returns the configured slice or prompts the user to
-// choose from the values supplied via [WithPossibleValues] or
-// [WithPossibleValuesFn].  It fails if neither has been set.
+// choose from flat values or tree options. Tree choices are supplied through
+// WithTreeOptions or WithTreeOptionsFn; flat choices use WithPossibleValues or
+// WithPossibleValuesFn. It fails if no choice source has been set.
 //
 // After successful selection the chosen slice is stored and the
 // parameter is considered set.
@@ -83,24 +104,30 @@ func (p *StringSliceParam) ValueOrAsk(ctx context.Context) ([]string, error) {
 	if p.IsSet() {
 		return p.Value(), nil
 	}
-	if len(p.possibleValues) == 0 && p.possibleValuesFn == nil {
-		return nil, erratt.New("StringSliceParam ValueOrAsk invoked but possibleValues are not set", "name", p.Name)
-	}
-	possibleValues := p.possibleValues
-	if len(possibleValues) == 0 {
-		var err error
-		possibleValues, err = p.possibleValuesFn()
-		if err != nil {
-			return nil, erratt.Errorf("cannot get possible values: %w", err)
+	var values []string
+	var err error
+	if p.treeOptionsFn != nil {
+		options, loadErr := p.treeOptionsFn()
+		if loadErr != nil {
+			return nil, erratt.Errorf("cannot get tree options: %w", loadErr)
 		}
+		values, err = widget.TreeInput(ctx, p.Description, options)
+	} else {
+		if len(p.possibleValues) == 0 && p.possibleValuesFn == nil {
+			return nil, erratt.New("StringSliceParam ValueOrAsk invoked but possibleValues are not set", "name", p.Name)
+		}
+		possibleValues := p.possibleValues
 		if len(possibleValues) == 0 {
-			return []string{}, nil
+			possibleValues, err = p.possibleValuesFn()
+			if err != nil {
+				return nil, erratt.Errorf("cannot get possible values: %w", err)
+			}
+			if len(possibleValues) == 0 {
+				return []string{}, nil
+			}
 		}
+		values, err = widget.MultiInput(ctx, p.Description, possibleValues)
 	}
-	values, err := widget.MultiInput(ctx,
-		p.Description,
-		possibleValues,
-	)
 	if err != nil {
 		return nil, err
 	}
